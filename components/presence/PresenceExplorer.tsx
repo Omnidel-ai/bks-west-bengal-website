@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import {
   districts,
@@ -16,9 +17,14 @@ function StatusBadge({ status, label }: { status: District['status']; label: str
 
 export default function PresenceExplorer({ initialSlug }: { initialSlug?: string }) {
   const { lang, t } = useLang();
+  const router = useRouter();
   const [selectedSlug, setSelectedSlug] = useState(
     initialSlug || 'paschim-medinipur',
   );
+  const selectDistrict = (slug: string) => {
+    setSelectedSlug(slug);
+    router.replace(`/presence/west-bengal/${slug}`, { scroll: false });
+  };
 
   const selected = useMemo(
     () => districts.find((d) => d.slug === selectedSlug) || districts.find((d) => d.status === 'active')!,
@@ -43,7 +49,7 @@ export default function PresenceExplorer({ initialSlug }: { initialSlug?: string
         <h2 style={{ marginTop: 0, fontFamily: 'var(--font-display)', color: 'var(--field-green)' }}>
           {t.presence.mapTitle}
         </h2>
-        <WestBengalMap lang={lang} selectedSlug={selected.slug} onSelect={setSelectedSlug} />
+        <WestBengalMap lang={lang} selectedSlug={selected.slug} onSelect={selectDistrict} />
         <p className="legend">
           <span className="l-active">{t.presence.active}</span>
           <span className="l-indicated">{t.presence.indicated}</span>
@@ -63,7 +69,7 @@ export default function PresenceExplorer({ initialSlug }: { initialSlug?: string
               <button
                 type="button"
                 aria-selected={d.slug === selected.slug}
-                onClick={() => setSelectedSlug(d.slug)}
+                onClick={() => selectDistrict(d.slug)}
               >
                 <span>{d.name[lang]}</span>
                 <StatusBadge

@@ -282,3 +282,14 @@ button, input, select, textarea { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Presence mobile-first: list above map */
+@media (max-width: 920px) {
+  .presence-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .presence-team-panel { order: 1; }
+  .presence-map-panel { order: 2; }
+}
+.presence-team-panel label { display: block; font-weight: 600; color: var(--ink-soft); }
