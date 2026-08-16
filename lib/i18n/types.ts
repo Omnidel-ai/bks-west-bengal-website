@@ -6,11 +6,20 @@ export type Dict = {
   nav: {
     intro: string;
     learn: string;
+    home: string;
     about: string;
+    aboutBks: string;
     westBengal: string;
     leadership: string;
     nationalPresident: string;
     presence: string;
+    initiatives: string;
+    work: string;
+    language: string;
+    menu: string;
+    close: string;
+    explore: string;
+    getInvolved: string;
     digitalCreators: string;
     sri: string;
     media: string;
