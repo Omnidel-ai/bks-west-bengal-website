@@ -87,7 +87,7 @@ button, input, select, textarea { font: inherit; }
 }
 .lang-toggle button {
   border: 0; background: transparent; padding: 0.45rem 0.7rem;
-  min-height: 40px; color: var(--ink-mute); cursor: pointer; font-weight: 700;
+  min-height: var(--tap-min); color: var(--ink-mute); cursor: pointer; font-weight: 700;
 }
 .lang-toggle button[aria-pressed="true"] {
   background: var(--field-green); color: #fff;
@@ -281,6 +281,40 @@ button, input, select, textarea { font: inherit; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+.skip-link {
+  position: absolute; left: 0.75rem; top: -40rem;
+  background: var(--paddy-gold); color: #201a10;
+  padding: 0.7rem 1rem; min-height: var(--tap-min); z-index: 100;
+  border-radius: var(--r-sm); font-weight: 700;
+}
+.skip-link:focus { top: 0.75rem; }
+.hero.initiative-hero {
+  background: var(--field-green);
+  color: #fff;
+}
+.hero.initiative-hero .kicker { color: var(--paddy-gold-soft); }
+html[lang="bn"] .i18n-en { display: none; }
+html:not([lang="bn"]) .i18n-bn { display: none; }
+.pending {
+  font-size: 0.8rem; font-weight: 700; color: #7a5610;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.chat-log { display: grid; gap: 0.75rem; margin: 1rem 0; }
+.bubble {
+  border-radius: var(--r-md); padding: 0.85rem 1rem;
+  border: 1px solid var(--rule); background: var(--surface);
+}
+.bubble.user { background: var(--field-green-tint); }
+.chat-form { display: grid; gap: 0.6rem; }
+.chat-form textarea {
+  min-height: 96px; width: 100%; border: 1px solid var(--rule);
+  border-radius: var(--r-sm); padding: 0.75rem; background: var(--surface);
+}
+.meta-line { font-size: 0.85rem; color: var(--ink-mute); }
+a:focus-visible, button:focus-visible, textarea:focus-visible, input:focus-visible {
+  outline: 3px solid var(--paddy-gold-soft); outline-offset: 2px;
 }
 
 /* Presence mobile-first: list above map */

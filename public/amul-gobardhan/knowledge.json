@@ -1,0 +1,809 @@
+{
+  "identity_en": "I am the BKS West Bengal helper and Amul and GOBARdhan information assistant — a BKS advisory assistant, not government. I am not Amul, not the Government of India, and I cannot approve applications or subsidies.",
+  "identity_bn": "আমি BKS পশ্চিমবঙ্গের Amul ও GOBARdhan তথ্য সহায়ক। আমি Amul নই, ভারত সরকার নই, এবং আমি আবেদন বা ভর্তুকি অনুমোদন করতে পারি না।",
+  "records": [
+    {
+      "id": "identity.bks",
+      "domain": "BKS",
+      "claim_type": "BKS_INITIATIVE",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "who are you",
+        "are you amul",
+        "petroleum ministry",
+        "customer care",
+        "আপনি কে",
+        "amul customer",
+        "government officer",
+        "sarkar"
+      ],
+      "priority": 80,
+      "answer_en": "I am the BKS West Bengal helper and Amul and GOBARdhan information assistant — a BKS advisory assistant, not government. I am not Amul, not the Government of India, and I cannot approve applications or subsidies. BKS is an information initiative, not a ministry and not Amul.",
+      "answer_bn": "আমি BKS পশ্চিমবঙ্গের Amul ও GOBARdhan তথ্য সহায়ক। আমি Amul নই, ভারত সরকার নই, এবং আমি আবেদন বা ভর্তুকি অনুমোদন করতে পারি না। BKS একটি তথ্য উদ্যোগ, মন্ত্রক নয় এবং Amul নয়।",
+      "must_say_en": [
+        "BKS",
+        "not Amul",
+        "not the Government"
+      ],
+      "sources": [
+        {
+          "kind": "BKS_INITIATIVE",
+          "note": "Phase 0.5 positioning"
+        }
+      ]
+    },
+    {
+      "id": "bks.vs.government",
+      "domain": "BKS",
+      "claim_type": "BKS_INITIATIVE",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "difference",
+        "government scheme",
+        "bks initiative",
+        "moddhe difference",
+        "সরকারি",
+        "উদ্যোগ",
+        "guarantee me",
+        "bks guarantee",
+        "approval ki bks",
+        "bks kore dite",
+        "sanction"
+      ],
+      "priority": 70,
+      "answer_en": "GOBARdhan is government. Amul is a dairy cooperative brand and network. BKS explains and facilitates information. The BKS West Bengal initiative explains both and helps farmers ask the right questions. BKS is not the ministry and not Amul. BKS does not sanction subsidy, does not approve applications.",
+      "answer_bn": "GOBARdhan ভারত সরকারের কর্মসূচি। Amul একটি দুগ্ধ সমবায়। BKS পশ্চিমবঙ্গ উদ্যোগ দুটোই ব্যাখ্যা করে। BKS ভর্তুকি মঞ্জুর করে না, আবেদন অনুমোদন করে না, মন্ত্রক বা Amul-এর জায়গা নেয় না।",
+      "sources": [
+        {
+          "kind": "BKS_INITIATIVE",
+          "note": "Phase 0.5"
+        }
+      ]
+    },
+    {
+      "id": "gobardhan.what",
+      "domain": "GOBARDHAN",
+      "claim_type": "OFFICIAL_GOVT",
+      "verification_status": "CURRENT",
+      "as_of": "2026-08-16",
+      "triggers": [
+        "what is gobardhan",
+        "gobardhan scheme",
+        "গোবর্ধন স্কিম",
+        "gobardhan ki",
+        "galvanizing",
+        "গোবর"
+      ],
+      "priority": 50,
+      "answer_en": "GOBARdhan means Galvanizing Organic Bio-Agro Resources Dhan. It is a Government of India programme that helps turn cattle dung and other organic waste into biogas or compressed biogas (CBG) and organic manure. It was announced in the Union Budget in February 2018 and launched on 30 April 2018. It is not one cheque to one farmer.",
+      "answer_bn": "GOBARdhan-এর পুরো নাম Galvanizing Organic Bio-Agro Resources Dhan। এটি ভারত সরকারের কর্মসূচি, যা গোবর ও অন্য জৈব বর্জ্যকে biogas বা CBG এবং জৈব সারে রূপান্তর করতে সাহায্য করে। ২০১৮ সালের ফেব্রুয়ারি বাজেটে ঘোষণা, ৩০ এপ্রিল ২০১৮-এ চালু। এটি একজন কৃষকের জন্য একটি চেক নয়।",
+      "sources": [
+        {
+          "kind": "PIB",
+          "id": "PRID 1518557",
+          "date": "2018-02-01"
+        },
+        {
+          "kind": "PORTAL",
+          "url": "https://gobardhan.sbm.gov.in/about-us"
+        }
+      ]
+    },
+    {
+      "id": "gobardhan.ministry",
+      "domain": "GOBARDHAN",
+      "claim_type": "OFFICIAL_GOVT",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "ministry",
+        "jal shakti",
+        "petroleum",
+        "kon ministry",
+        "nodal",
+        "মন্ত্র"
+      ],
+      "priority": 55,
+      "answer_en": "There are two layers, do not mix them. Village community biogas under Swachh Bharat Mission Grameen is coordinated by the Department of Drinking Water and Sanitation, Ministry of Jal Shakti. For large compressed biogas (CBG) plants, the Ministry of Petroleum and Natural Gas is nodal, including a Cabinet scheme on 6 August 2026.",
+      "answer_bn": "দুটি স্তর আছে, মেশাবেন না। গ্রামের community biogas — SBM-G, Jal Shakti / DDWS। বড় CBG প্ল্যান্ট — Petroleum and Natural Gas মন্ত্রক; Cabinet ৬ আগস্ট ২০২৬।",
+      "sources": [
+        {
+          "kind": "PIB",
+          "id": "PRID 2295480",
+          "date": "2026-08-06"
+        },
+        {
+          "kind": "PIB",
+          "id": "PRID 2240594",
+          "date": "2026-03-16"
+        }
+      ]
+    },
+    {
+      "id": "refuse.50lakh",
+      "domain": "GOBARDHAN",
+      "claim_type": "HARD_REFUSAL",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "50 lakh",
+        "50 lakhs",
+        "fifty lakh",
+        "৫০ লক্ষ",
+        "পঞ্চাশ লক্ষ",
+        "50lakh"
+      ],
+      "priority": 100,
+      "answer_en": "No. Under SBM-G, up to ₹50 lakh is available per district for community or cluster plants for the whole programme period, shared Centre–State — not per farmer and not per farm. BKS cannot guarantee you ₹50 lakh.",
+      "answer_bn": "না। SBM-G-তে community বা cluster / সমষ্টি বা ক্লাস্টার প্ল্যান্টের জন্য পুরো কর্মসূচি কালে জেলা প্রতি সর্বোচ্চ ৫০ লক্ষ টাকা — কৃষক প্রতি নয়, খামার প্রতি নয়। BKS আপনাকে ৫০ লক্ষ টাকা গ্যারান্টি দিতে পারে না।",
+      "sources": [
+        {
+          "kind": "PORTAL",
+          "url": "https://gobardhan.sbm.gov.in/about-us"
+        },
+        {
+          "kind": "PIB",
+          "id": "PRID 2240594",
+          "date": "2026-03-16"
+        }
+      ]
+    },
+    {
+      "id": "cfa.mnre.household",
+      "domain": "GOBARDHAN",
+      "claim_type": "OFFICIAL_GOVT",
+      "verification_status": "DATED",
+      "as_of": "2021-22 to 2025-26",
+      "triggers": [
+        "household",
+        "home plant",
+        "mnre",
+        "2 to 4",
+        "2 cubic",
+        "cubic metre",
+        "বাড়িতে বায়োগ্যাস",
+        "কী করতে হবে",
+        "subsidy pabo",
+        "what subsidy",
+        "definitely get",
+        "14,350",
+        "14350"
+      ],
+      "priority": 45,
+      "answer_en": "It depends on the track. For a small home biogas plant, the MNRE Biogas Programme (2021-22 to 2025-26) pays Central Financial Assistance after the plant is commissioned. In general-category States including West Bengal, about ₹9,800 for 1 m³/day up to ₹52,800 for 20–25 m³. A typical 2–4 m³ plant is ₹14,350 (general category). Apply on biogas.mnre.gov.in. Also gobardhan.sbm.gov.in if other benefits. This is reimbursement after commissioning, not money paid before the plant is built. It depends on household vs community vs CBG. Ask cattle count.",
+      "answer_bn": "ট্র্যাক বুঝে বলতে হয়। বাড়ির ছোট biogas-এ MNRE CFA (২০২১-২২ থেকে ২০২৫-২৬) প্ল্যান্ট চালু হওয়ার পর। পশ্চিমবঙ্গ সাধারণ শ্রেণিতে ১ ঘনমিটারে প্রায় ৯,৮০০ টাকা, ২–৪ ঘনমিটারে ১৪,৩৫০ টাকা। আবেদন: biogas.mnre.gov.in। আগে থেকে গ্যারান্টি চেক নয়।",
+      "sources": [
+        {
+          "kind": "MNRE",
+          "url": "https://mnre.gov.in/en/bio-gas/"
+        }
+      ]
+    },
+    {
+      "id": "route.2cow",
+      "domain": "GOBARDHAN",
+      "claim_type": "INFERENCE",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "two cow",
+        "2 cow",
+        "দুটো গরু",
+        "2-cow",
+        "dui goru"
+      ],
+      "priority": 90,
+      "answer_en": "With about two cows, the realistic government track is household / small biogas (Track A, MNRE), not commercial CBG capital assistance of up to ₹2 crore per TPD. That CBG grant is for commercial plants, not a two-cow home.",
+      "answer_bn": "দুটো গরু থাকলে বাস্তব পথ হল বাড়ির ছোট biogas (Track A, MNRE) — বাণিজ্যিক CBG-এর টন প্রতিদিনে ₹২ কোটি মূলধন সহায়তা নয়।",
+      "sources": [
+        {
+          "kind": "BKS_APPROVED_RESEARCH",
+          "date": "2026-08-16"
+        }
+      ]
+    },
+    {
+      "id": "route.3to4cow",
+      "domain": "GOBARDHAN",
+      "claim_type": "OFFICIAL_GOVT",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "four cow",
+        "4 cow",
+        "3 ta goru",
+        "3 cow",
+        "তিনটে",
+        "চারটে গরু"
+      ],
+      "priority": 85,
+      "answer_en": "Official cluster guidance is a minimum of about 3 to 4 cattle for a household cluster plant; a small 2 cubic metre plant is the usual household size (Track A). A village or FPO slurry hub is Track B (Gram Panchayat / district). A Banas-scale CBG plant is Track C — not a single 3–4 cow farm.",
+      "answer_bn": "ক্লাস্টার ঘর-প্ল্যান্টের দাপ্তরিক ইঙ্গিত প্রায় ৩–৪টি গবাদি পশু; সাধারণত ২ ঘনমিটার বাড়ির প্ল্যান্ট (Track A)। গ্রাম/FPO slurry hub হল Track B। বড় CBG Track C — একটি ৩–৪ গরুর খামার নয়।",
+      "sources": [
+        {
+          "kind": "FRAMEWORK",
+          "note": "GOBARDHAN Framework Nov 2021 Annex II"
+        }
+      ]
+    },
+    {
+      "id": "track.b.fpo",
+      "domain": "GOBARDHAN",
+      "claim_type": "OFFICIAL_GOVT",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "fpo",
+        "30 farm",
+        "slurry hub",
+        "gram panchayat wants",
+        "community gobar"
+      ],
+      "priority": 75,
+      "answer_en": "That fits Track B — community / cluster under SBM-G. Start with the Gram Panchayat, Gram Sabha resolution, then District approval. Register on gobardhan.sbm.gov.in. The ₹50 lakh figure is a per-district programme cap for community/cluster plants, not ₹50 lakh per GP as a personal cheque.",
+      "answer_bn": "এটি Track B — community/cluster, SBM-G। গ্রাম পঞ্চায়েত ও Gram Sabha, তারপর জেলা অনুমোদন। নিবন্ধন gobardhan.sbm.gov.in। ৫০ লক্ষ টাকা জেলা-সীমা, FPO-র ব্যক্তিগত ভর্তুকি নয়।",
+      "sources": [
+        {
+          "kind": "FRAMEWORK",
+          "note": "Nov 2021"
+        },
+        {
+          "kind": "PORTAL",
+          "url": "https://gobardhan.sbm.gov.in"
+        }
+      ]
+    },
+    {
+      "id": "track.c.cbg",
+      "domain": "GOBARDHAN",
+      "claim_type": "OFFICIAL_GOVT",
+      "verification_status": "WAITING_ON_GOVERNMENT",
+      "triggers": [
+        "cbg",
+        "সিবিজি",
+        "40 t",
+        "চল্লিশ টন",
+        "2 crore",
+        "2110",
+        "mmbtu"
+      ],
+      "priority": 80,
+      "answer_en": "Commercial CBG is Track C. Cabinet on 6 August 2026 approved capital assistance up to ₹2 crore per TPD and an administered CBG price of ₹2,110 per MMBTU from FY 2026-27. Operational guidelines were not published as of 16 August 2026. Register on gobardhan.sbm.gov.in and gobardhan.eil.co.in / mopng.gov.in.",
+      "answer_bn": "বাণিজ্যিক CBG হল Track C। ৬ আগস্ট ২০২৬ Cabinet: টন/দিনে সর্বোচ্চ ₹২ কোটি, দাম ₹২,১১০/MMBTU (FY 2026-27)। আবেদনের খুঁটিনাটি নির্দেশিকা ১৬ আগস্ট ২০২৬ পর্যন্ত প্রকাশিত হয়নি। ₹১০৫/কেজি বলে দেবেন না।",
+      "sources": [
+        {
+          "kind": "PIB",
+          "id": "PRID 2295480",
+          "date": "2026-08-06"
+        }
+      ]
+    },
+    {
+      "id": "refuse.105kg",
+      "domain": "GOBARDHAN",
+      "claim_type": "HARD_REFUSAL",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "105",
+        "₹105",
+        "105 per kg",
+        "105/kg"
+      ],
+      "priority": 100,
+      "answer_en": "I will not invent a rupee-per-kilogram CBG price. ₹2,110 per MMBTU as of Cabinet 6 Aug 2026. Do not convert to ₹105/kg.",
+      "answer_bn": "CBG ₹১০৫/কেজি বলব না। Cabinet (৬ আগস্ট ২০২৬) বলেছে ₹২,১১০ প্রতি MMBTU। কেজি দাম অনুমান করব না।",
+      "sources": [
+        {
+          "kind": "PIB",
+          "id": "PRID 2295480",
+          "date": "2026-08-06"
+        }
+      ]
+    },
+    {
+      "id": "refuse.carbon",
+      "domain": "GOBARDHAN",
+      "claim_type": "HARD_REFUSAL",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "carbon",
+        "কার্বন",
+        "carbon credit",
+        "carbon bonus"
+      ],
+      "priority": 100,
+      "answer_en": "GOBARdhan itself does not pay carbon credits. Any carbon income would be a separate market if at all. Do not count it as a scheme benefit. There is no dated official source for a Bengal GOBARdhan carbon bonus.",
+      "answer_bn": "GOBARdhan কার্বন ক্রেডিটের টাকা দেয় না। আলাদা বাজার হলে সেটা আলাদা প্রকল্প। স্কিমের সুবিধা হিসেবে গণ্য করবেন না।",
+      "sources": [
+        {
+          "kind": "BKS_APPROVED_RESEARCH",
+          "date": "2026-08-16"
+        }
+      ]
+    },
+    {
+      "id": "mda.historical",
+      "domain": "GOBARDHAN",
+      "claim_type": "HARD_REFUSAL",
+      "verification_status": "DATED",
+      "triggers": [
+        "1,500",
+        "1500",
+        "mda",
+        "2026-27",
+        "manure assistance"
+      ],
+      "priority": 95,
+      "answer_en": "MDA of ₹1,500 per tonne on FOM/LFOM/PROM applied to sales in FY 2023-24 to 2025-26 if the plant was on the GOBARdhan portal and met FCO quality. In March 2026 Rajya Sabha / Parliament was told the scheme was concluding and NITI evaluation was underway. Do not promise for 2026-27 unless a new government order is issued. You can still sell manure in the open market.",
+      "answer_bn": "MDA প্রতি টন ₹১,৫০০ ছিল ২০২৩-২৪ থেকে ২০২৫-২৬। মার্চ ২০২৬-এ সংসদে বলা হয় স্কিম শেষ হচ্ছে ও মূল্যায়ন চলছে। ২০২৬-২৭-এর জন্য গ্যারান্টি দেবেন না, নতুন আদেশ না থাকলে।",
+      "sources": [
+        {
+          "kind": "PIB",
+          "id": "PRID 1945750",
+          "date": "2023-06-28"
+        },
+        {
+          "kind": "RAJYA_SABHA",
+          "date": "2026-03-10"
+        }
+      ]
+    },
+    {
+      "id": "wb.subsidy.none",
+      "domain": "GOBARDHAN",
+      "claim_type": "HARD_REFUSAL",
+      "verification_status": "PENDING_SOURCE_VERIFICATION",
+      "triggers": [
+        "west bengal extra",
+        "wb extra",
+        "state top-up",
+        "বাংলা অতিরিক্ত",
+        "extra subsidy",
+        "on top of"
+      ],
+      "priority": 90,
+      "answer_en": "No published State top-up found as of 16 August 2026. Ask the District SBM cell. Do not assume extra money.",
+      "answer_bn": "১৬ আগস্ট ২০২৬ পর্যন্ত পশ্চিমবঙ্গের আলাদা GOBARdhan টপ-আপ পাওয়া যায়নি। জেলা SBM সেলে জিজ্ঞাসা করুন। অতিরিক্ত টাকা ধরে নেবেন না।",
+      "sources": [
+        {
+          "kind": "STATE",
+          "url": "https://prd.wb.gov.in/",
+          "date": "2026-08-16"
+        }
+      ]
+    },
+    {
+      "id": "portals",
+      "domain": "GOBARDHAN",
+      "claim_type": "OFFICIAL_GOVT",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "which website",
+        "register on",
+        "portal",
+        "নিবন্ধন",
+        "website"
+      ],
+      "priority": 40,
+      "answer_en": "Unified plant registration: https://gobardhan.sbm.gov.in (free). Household CFA: https://biogas.mnre.gov.in. CBG reporting: https://gobardhan.eil.co.in. SATAT information: https://satat.co.in. There is no BKS subsidy portal.",
+      "answer_bn": "প্ল্যান্ট নিবন্ধন: https://gobardhan.sbm.gov.in — বিনামূল্যে। ঘরের CFA: https://biogas.mnre.gov.in। CBG রিপোর্ট: https://gobardhan.eil.co.in। SATAT: https://satat.co.in।",
+      "sources": [
+        {
+          "kind": "PORTAL",
+          "url": "https://gobardhan.sbm.gov.in"
+        }
+      ]
+    },
+    {
+      "id": "helpline.wb",
+      "domain": "GOBARDHAN",
+      "claim_type": "OFFICIAL_GOVT",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "helpline",
+        "হেল্পলাইন",
+        "1800",
+        "whom do i call"
+      ],
+      "priority": 90,
+      "answer_en": "There is no separate GOBARdhan-only helpline in West Bengal. Call the Panchayat Helpline 1800 889 9451 (Panchayat and Rural Development — Mission Nirmal Bangla / SBM-G). Start with your Gram Panchayat for the actual plant file.",
+      "answer_bn": "পশ্চিমবঙ্গে আলাদা ‘GOBARdhan helpline’ নেই। পঞ্চায়েত হেল্পলাইন 1800 889 9451। আসল ফাইলের জন্য গ্রাম পঞ্চায়েত দিয়ে শুরু করুন।",
+      "sources": [
+        {
+          "kind": "STATE",
+          "url": "https://prd.wb.gov.in/"
+        }
+      ]
+    },
+    {
+      "id": "satat",
+      "domain": "GOBARDHAN",
+      "claim_type": "OFFICIAL_GOVT",
+      "verification_status": "DATED",
+      "triggers": [
+        "satat",
+        "cooking biogas",
+        "oil companies"
+      ],
+      "priority": 70,
+      "answer_en": "SATAT — Sustainable Alternative Towards Affordable Transportation — was launched by the Petroleum Ministry on 1 October 2018. Oil companies agree to buy CBG from plants. It is linked to GOBARdhan but it is not a household cooking-gas subsidy. A 2021 framework cited ₹46/kg offtake — that is dated; do not quote it as current.",
+      "answer_bn": "SATAT ১ অক্টোবর ২০১৮, Petroleum Ministry। তেল কোম্পানি CBG কিনতে পারে। এটি বাড়ির রান্নার গ্যাস ভর্তুকি নয়। ₹৪৬/কেজি (অক্টোবর ২০২১) পুরনো — আজকের দাম হিসেবে বলবেন না।",
+      "sources": [
+        {
+          "kind": "PIB",
+          "date": "2018-10-01"
+        }
+      ]
+    },
+    {
+      "id": "dung.sale",
+      "domain": "CROSS",
+      "claim_type": "CASE_STUDY",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "buy my dung",
+        "গোবর কিনে",
+        "dung sale",
+        "msp for dung"
+      ],
+      "priority": 70,
+      "answer_en": "There is no national minimum support price for dung. Banas Dairy in Gujarat (official Framework case) paid about ₹1 per kg along with milk payment. In Bengal that would depend on a local plant or cooperative contract, not an automatic central scheme. The government will not automatically buy your dung at ₹1/kg.",
+      "answer_bn": "গোবরের জাতীয় MSP নেই। গুজরাটের Banas উদাহরণে দুধের সঙ্গে প্রায় ₹১/কেজি। বাংলায় স্থানীয় প্ল্যান্ট বা সমবায় চুক্তি লাগে — কেন্দ্র স্বয়ংক্রিয়ভাবে কিনবে না।",
+      "sources": [
+        {
+          "kind": "FRAMEWORK",
+          "note": "Banas Annex II-C"
+        }
+      ]
+    },
+    {
+      "id": "manure.sale",
+      "domain": "GOBARDHAN",
+      "claim_type": "OFFICIAL_GOVT",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "sell slurry",
+        "sell manure",
+        "fermented organic"
+      ],
+      "priority": 60,
+      "answer_en": "Yes you can use or sell slurry and fermented organic manure; open market still possible. MDA ₹1,500/MT was only FY 2023-24 to 2025-26 and should not be treated as a 2026-27 guarantee.",
+      "answer_bn": "হ্যাঁ, slurry ও FOM নিজে ব্যবহার বা বাজারে বিক্রি করা যায়। MDA ২০২৬-২৭ গ্যারান্টি নয়।",
+      "sources": [
+        {
+          "kind": "PIB",
+          "id": "PRID 1945750"
+        }
+      ]
+    },
+    {
+      "id": "counts.live",
+      "domain": "GOBARDHAN",
+      "claim_type": "OFFICIAL_GOVT",
+      "verification_status": "DATED",
+      "triggers": [
+        "how many plant",
+        "latest count",
+        "koto gobardhan plant",
+        "west bengal e ekhon"
+      ],
+      "priority": 75,
+      "answer_en": "Do not memorise live dashboard counts. Check gobardhan.sbm.gov.in today. Optional snapshot labelled as of 31 Jul 2026: 1 functional CBG in WB versus 217 in India. Community biogas counts on the portal move — always recheck.",
+      "answer_bn": "লাইভ ড্যাশবোর্ড মুখস্থ বলব না। আজ gobardhan.sbm.gov.in দেখুন। ৩১ জুলাই ২০২৬ সংসদ: পশ্চিমবঙ্গে ১টি কার্যকর CBG, দেশে ২১৭।",
+      "sources": [
+        {
+          "kind": "LOK_SABHA",
+          "id": "AU3094",
+          "date": "2026-07-31"
+        }
+      ]
+    },
+    {
+      "id": "bks.nrb",
+      "domain": "BKS",
+      "claim_type": "BKS_INITIATIVE",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "1 lakh",
+        "₹1 lakh",
+        "nrb",
+        "replace bks"
+      ],
+      "priority": 80,
+      "answer_en": "No. GOBARdhan does not replace BKS’s ₹1 lakh per farm ask. Household MNRE CFA is much smaller, and the ₹50 lakh is a district pool.",
+      "answer_bn": "না। GOBARdhan BKS-এর খামার প্রতি ₹১ লক্ষের জায়গা নেয় না। ঘরের CFA অনেক ছোট; ৫০ লক্ষ জেলার তহবিল।",
+      "sources": [
+        {
+          "kind": "BKS_APPROVED_RESEARCH",
+          "date": "2026-08-16"
+        }
+      ]
+    },
+    {
+      "id": "amul.participate",
+      "domain": "AMUL",
+      "claim_type": "GENERAL_GUIDANCE",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "participate",
+        "village society",
+        "vdcs",
+        "how do we form",
+        "e-rcs",
+        "farmer-ra ki bhabe",
+        "join amul"
+      ],
+      "priority": 50,
+      "answer_en": "I am a BKS helper, not Amul. The Amul-pattern 3-tier model is a three-tier cooperative: Village Dairy Cooperative Society (VDCS) collects milk, the district union processes it, the state federation (GCMMF / Amul) markets it. A presentation used by BKS describes four steps: gather producers, register society / e-RCS as presented, connect with the district union for testing machines and coolers, then pour milk. The union confirms the exact process. BKS will not register you automatically.",
+      "answer_bn": "আমি BKS সহায়ক, Amul নই। Amul-ধাঁচ: গ্রাম সমিতি (VDCS) → জেলা ইউনিয়ন → রাজ্য ফেডারেশন। BKS উপস্থাপনায় চার ধাপ: কৃষক জড়ো, সমিতি নিবন্ধন (e-RCS), ইউনিয়নের সঙ্গে যোগাযোগ, দুধ দেওয়া। সঠিক নিয়ম ইউনিয়ন নিশ্চিত করবে। BKS নিজে নিবন্ধন করে দেবে না।",
+      "sources": [
+        {
+          "kind": "BKS_PRESENTATION",
+          "note": "Blueprint slides 6 and 9"
+        }
+      ]
+    },
+    {
+      "id": "amul.3tier",
+      "domain": "AMUL",
+      "claim_type": "GENERAL_GUIDANCE",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "3-tier",
+        "three tier",
+        "gcmmf",
+        "middlemen eliminated"
+      ],
+      "priority": 40,
+      "answer_en": "Amul-pattern cooperatives use a 3-tier system: village society, district union, state federation. Milk flows up, payment is designed to flow back to members. This is the cooperative model, not a BKS guarantee of your village price.",
+      "answer_bn": "৩-স্তর: গ্রাম সমিতি, জেলা ইউনিয়ন, রাজ্য ফেডারেশন। এটি সমবায় মডেল — আপনার গ্রামের দামের BKS গ্যারান্টি নয়।",
+      "sources": [
+        {
+          "kind": "BKS_PRESENTATION",
+          "note": "slide 6"
+        }
+      ]
+    },
+    {
+      "id": "amul.history",
+      "domain": "AMUL",
+      "claim_type": "HISTORICAL",
+      "verification_status": "PENDING_SOURCE_VERIFICATION",
+      "triggers": [
+        "1946",
+        "revolt",
+        "kaira",
+        "3.6 million",
+        "tribhuvandas"
+      ],
+      "answer_en": "The BKS presentation describes Amul’s origin in 1946 in Kaira district under Tribhuvandas Patel, starting small and growing into a large farmer network. A slide says “3.6 million farmer members today” — that is a presentation figure and needs a current Amul/NDDB source. Do not confirm as live census.",
+      "answer_bn": "উপস্থাপনায় Amul-এর শুরু ১৯৪৬, Kaira, Tribhuvandas Patel। ‘আজ ৩৬ লক্ষ সদস্য’ স্লাইডের সংখ্যা — লাইভ আদমশুমারি হিসেবে নিশ্চিত করব না, প্রাথমিক সূত্র লাগে।",
+      "priority": 60,
+      "sources": [
+        {
+          "kind": "BKS_PRESENTATION",
+          "note": "slide 5 — PENDING primary cite"
+        }
+      ]
+    },
+    {
+      "id": "amul.price.hold",
+      "domain": "AMUL",
+      "claim_type": "PENDING_SOURCE_VERIFICATION",
+      "verification_status": "PENDING_SOURCE_VERIFICATION",
+      "triggers": [
+        "₹30",
+        "30 per litre",
+        "30/litre",
+        "₹17",
+        "80-85",
+        "80 to 85",
+        "80 percent"
+      ],
+      "priority": 100,
+      "answer_en": "I do not promise ₹30 per litre in your village. A BKS presentation compares unorganised prices around ₹17/litre with an Amul-pattern fat-based ₹30+/litre and an 80–85% farmer share of consumer price. Those figures are PENDING SOURCE VERIFICATION. The presentation comparison is not a Bengal procurement contract and not a BKS guarantee.",
+      "answer_bn": "আপনার গ্রামে ₹৩০/লিটার গ্যারান্টি দেব না। উপস্থাপনার তুলনা (প্রায় ₹১৭ বনাম ₹৩০+, ৮০–৮৫%) যাচাই বাকি — চুক্তি নয়।",
+      "sources": [
+        {
+          "kind": "BKS_PRESENTATION",
+          "note": "slide 4 — PENDING SOURCE VERIFICATION"
+        }
+      ]
+    },
+    {
+      "id": "amul.sankrail.hold",
+      "domain": "AMUL",
+      "claim_type": "PENDING_SOURCE_VERIFICATION",
+      "verification_status": "PENDING_SOURCE_VERIFICATION",
+      "triggers": [
+        "700 crore",
+        "sankrail",
+        "30 lakh litre",
+        "government gift"
+      ],
+      "priority": 95,
+      "answer_en": "No — a ₹700 crore plant is not a per-farmer government gift. The BKS presentation names a Sankrail, Howrah facility with ₹700 crore, 30 lakh litres/day, and 10 lakh kg/day curd. Presentation capex pending primary source. I will not treat them as a cheque to each farmer. Not a per-farmer gift.",
+      "answer_bn": "না — ₹৭০০ কোটি প্ল্যান্ট প্রত্যেক কৃষকের উপহার নয়। সাঁকরাইলের সংখ্যাগুলো উপস্থাপনায় আছে, প্রাথমিক সূত্র ছাড়া যাচাইকৃত নয়।",
+      "sources": [
+        {
+          "kind": "BKS_PRESENTATION",
+          "note": "slides 2 and 10 — PENDING SOURCE VERIFICATION"
+        }
+      ]
+    },
+    {
+      "id": "amul.women.hold",
+      "domain": "AMUL",
+      "claim_type": "PENDING_SOURCE_VERIFICATION",
+      "verification_status": "PENDING_SOURCE_VERIFICATION",
+      "triggers": [
+        "30,000",
+        "30000",
+        "women",
+        "মহিলা"
+      ],
+      "priority": 70,
+      "answer_en": "A BKS presentation said 30,000+ women milk producers are already active in Bengal’s Amul network. Pending primary source — not a census I can treat as verified.",
+      "answer_bn": "উপস্থাপনায় বাংলার Amul নেটওয়ার্কে ৩০,০০০+ মহিলা — যাচাই বাকি, আদমশুমারি নয়।",
+      "sources": [
+        {
+          "kind": "BKS_PRESENTATION",
+          "note": "slide 7 — PENDING SOURCE VERIFICATION"
+        }
+      ]
+    },
+    {
+      "id": "amul.commercial.missing",
+      "domain": "AMUL",
+      "claim_type": "SOURCE_MISSING",
+      "verification_status": "SOURCE_MISSING",
+      "triggers": [
+        "dealership",
+        "commission",
+        "membership fee",
+        "how much money do i need",
+        "fee koto",
+        "franchise",
+        "mou"
+      ],
+      "priority": 100,
+      "answer_en": "I do not have a dated official source or a dated BKS Amul brief for commercial terms, dealership fees, commissions, MoU terms, or investment requirements. I will not invent them. Ask the district milk union or Amul’s official channel. BKS is not Amul customer care.",
+      "answer_bn": "Amul dealership ফি, কমিশন বা MoU-এর যাচাইকৃত সূত্র এই জ্ঞানভাণ্ডারে নেই। উদ্ভাবন করব না। জেলা দুগ্ধ ইউনিয়ন বা Amul-এর দাপ্তরিক পথে জিজ্ঞাসা করুন।",
+      "sources": [
+        {
+          "kind": "MISSING",
+          "note": "BKS_Amul_Govardhan_VoiceAgent_Brief_2026-08-16.md not on disk"
+        }
+      ]
+    },
+    {
+      "id": "cross.dung_biogas",
+      "domain": "CROSS",
+      "claim_type": "CASE_STUDY",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "gobor diye biogas",
+        "amul-er sathe gobor",
+        "owns the gobardhan",
+        "join korlei",
+        "automatically eligible"
+      ],
+      "priority": 90,
+      "answer_en": "Correction: not Amul owns GOBARdhan. Amul does not own the government GOBARdhan programme. GOBARdhan is government. Cooperatives can implement. Banas Gujarat case study: dung with milk payment is not a national MSP. Sundarini cluster plant in Bengal as case study (portal project 1460, Nafarganj, Basanti). Joining Amul does not automatically give you a GOBARdhan subsidy. Amul will not automatically pay Bengal farmers for dung.",
+      "answer_bn": "Amul GOBARdhan-এর মালিক নয় — এটি সরকারি কর্মসূচি। দুগ্ধ সমবায় বাস্তবায়নকারী হতে পারে। Banas (গুজরাট) কেস স্টাডি; বাংলায় Sundarini ক্লাস্টার প্ল্যান্ট (প্রকল্প ১৪৬০)। Amul-এ যোগ দিলেই GOBARdhan ভর্তুকি মেলে না।",
+      "sources": [
+        {
+          "kind": "FRAMEWORK",
+          "note": "Banas"
+        },
+        {
+          "kind": "PORTAL",
+          "url": "https://gobardhan.sbm.gov.in/project-details/1460"
+        }
+      ]
+    },
+    {
+      "id": "dairy.cooperative",
+      "domain": "AMUL",
+      "claim_type": "CASE_STUDY",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "how does amul make money",
+        "what will amul pay me",
+        "amul pay me in bengal",
+        "milk union",
+        "collect dung with milk",
+        "sundarini",
+        "banas"
+      ],
+      "priority": 55,
+      "answer_en": "Milk cooperatives are named GOBARdhan implementers. Amul membership is not a legal requirement to apply. There is no national dung MSP. Banas is a Gujarat case study, not a Bengal offtake promise. Sundarini / Sundarban union cluster plant is a Bengal example of cooperative biogas/slurry, not a Banas-scale CBG plant.",
+      "answer_bn": "দুগ্ধ সমবায় GOBARdhan বাস্তবায়নকারী হিসেবে উল্লিখিত। শুধু Amul সদস্য আবেদন করতে পারবে — এমন নিয়ম নেই। Banas কেস স্টাডি; Sundarini বাংলার উদাহরণ।",
+      "sources": [
+        {
+          "kind": "FRAMEWORK"
+        },
+        {
+          "kind": "PORTAL",
+          "note": "project 1460"
+        }
+      ]
+    },
+    {
+      "id": "terminology.govardhan",
+      "domain": "GOBARDHAN",
+      "claim_type": "OFFICIAL_GOVT",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "govardhan mane",
+        "pujo naki",
+        "festival"
+      ],
+      "priority": 85,
+      "answer_en": "Disambiguate festival vs GOBARdhan scheme vs BKS initiative. Govardhan Puja is a festival. GOBARdhan (Galvanizing Organic Bio-Agro Resources Dhan) is the government biogas/manure scheme. BKS also names an Amul + GOBARdhan information initiative. They are not the same subsidy.",
+      "answer_bn": "তিন অর্থ: গোবর্ধন পুজো একটি উৎসব। GOBARdhan সরকারি biogas/সার স্কিম। BKS-এর Amul+GOBARdhan তথ্য উদ্যোগ আলাদা। একই ভর্তুকি নয়।",
+      "sources": [
+        {
+          "kind": "BKS_APPROVED_RESEARCH",
+          "date": "2026-08-16"
+        }
+      ]
+    },
+    {
+      "id": "handoff.booth",
+      "domain": "BKS",
+      "claim_type": "BKS_INITIATIVE",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "polling booth",
+        "where do i vote",
+        "blo",
+        "purulia booth"
+      ],
+      "priority": 100,
+      "answer_en": "Booth location is handled by the separate BKS booth helper (Arjun), not by this Amul and GOBARdhan assistant. Do not invent a booth number or mix voting with scheme subsidy.",
+      "answer_bn": "ভোটকেন্দ্রের জন্য আলাদা BKS সহায়ক (Arjun)। এই Amul/GOBARdhan সহকারী বুথ নম্বর বানাবে না।",
+      "sources": [
+        {
+          "kind": "BKS_INITIATIVE",
+          "note": "Option B isolation"
+        }
+      ]
+    },
+    {
+      "id": "blueprint.herd",
+      "domain": "AMUL",
+      "claim_type": "PENDING_SOURCE_VERIFICATION",
+      "verification_status": "PENDING_SOURCE_VERIFICATION",
+      "triggers": [
+        "herd target",
+        "offtake number",
+        "blueprint herd"
+      ],
+      "priority": 90,
+      "answer_en": "The 10-slide Bengal Dairy Prosperity Blueprint has no herd-target census on the 10 slides. Presentation figures are not independently verified. I will not invent herd statistics as official fact.",
+      "answer_bn": "১০ স্লাইডে হার্ড টার্গেট আদমশুমারি নেই। উপস্থাপনার সংখ্যা এখানে স্বাধীনভাবে যাচাই হয়নি। হার্ড পরিসংখ্যান উদ্ভাবন করব না।",
+      "sources": [
+        {
+          "kind": "BKS_PRESENTATION",
+          "note": "visual review 2026-08-16"
+        }
+      ]
+    },
+    {
+      "id": "unknown.bonus",
+      "domain": "GOBARDHAN",
+      "claim_type": "HARD_REFUSAL",
+      "verification_status": "CURRENT",
+      "triggers": [
+        "25000",
+        "25,000",
+        "uncle in purulia",
+        "special 2026 bengal"
+      ],
+      "priority": 95,
+      "answer_en": "I do not have a dated official source for that. I will not confirm a special 2026 Bengal GOBARdhan carbon bonus of ₹25,000. GOBARdhan does not pay carbon credits.",
+      "answer_bn": "এমন ₹২৫,০০০ কার্বন বোনাসের দাপ্তরিক সূত্র নেই। নিশ্চিত করব না। GOBARdhan কার্বন চেক দেয় না।",
+      "sources": [
+        {
+          "kind": "BKS_APPROVED_RESEARCH"
+        }
+      ]
+    }
+  ]
+}

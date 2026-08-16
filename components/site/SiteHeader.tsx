@@ -11,7 +11,8 @@ export default function SiteHeader() {
   const { t } = useLang();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const current = (href: string) => (pathname === href ? 'page' : undefined);
+  const current = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`) ? 'page' : undefined;
 
   const intro = [
     { href: '/about', label: t.nav.about },
@@ -29,6 +30,7 @@ export default function SiteHeader() {
     { href: '/sri', label: t.nav.sri },
     { href: '/media', label: t.nav.media },
     { href: '/ai', label: t.nav.ai },
+    { href: '/initiatives/amul-gobardhan', label: t.nav.amulGobardhan },
   ];
 
   return (
