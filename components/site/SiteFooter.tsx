@@ -38,6 +38,8 @@ export default function SiteFooter() {
             <br />
             <Link href="/ai">{t.nav.ai}</Link>
             <br />
+            <Link href="/initiatives/amul-gobardhan">{t.nav.amulGobardhan}</Link>
+            <br />
             <Link href="/apply">{t.nav.apply}</Link>
           </p>
         </div>

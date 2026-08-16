@@ -7,15 +7,17 @@ import './globals.css';
 
 const display = Baloo_Da_2({
   subsets: ['bengali', 'latin'],
+  weight: ['700'],
   variable: '--font-baloo-da',
   display: 'swap',
 });
 
 const text = Hind_Siliguri({
   subsets: ['bengali', 'latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '600', '700'],
   variable: '--font-hind-siliguri',
   display: 'swap',
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -35,9 +37,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="bn" className={`${display.variable} ${text.variable}`}>
       <body>
+        <a className="skip-link" href="#main">
+          Skip to content
+        </a>
         <LanguageProvider>
           <SiteHeader />
-          <main>{children}</main>
+          <main id="main">{children}</main>
           <SiteFooter />
         </LanguageProvider>
       </body>

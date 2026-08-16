@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/apply',
     '/presence',
     '/presence/west-bengal/paschim-medinipur',
+    '/initiatives/amul-gobardhan',
   ];
   return routes.map((path) => ({
     url: `${base}${path}`,

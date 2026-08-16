@@ -15,6 +15,7 @@ export type Dict = {
     sri: string;
     media: string;
     ai: string;
+    amulGobardhan: string;
     apply: string;
     appointment: string;
   };
