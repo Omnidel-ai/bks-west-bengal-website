@@ -14,6 +14,21 @@ export default function InitiativePage() {
     <>
       <section className="hero initiative-hero">
         <div className="wrap">
+          <nav aria-label="Breadcrumb">
+            <ol className="breadcrumb">
+              <li>
+                <Link href="/">
+                  <T bn="হোম" en="Home" />
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <T bn="উদ্যোগ" en="Initiatives" />
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page">Amul + GOBARdhan</li>
+            </ol>
+          </nav>
           <p className="kicker">Bharatiya Krishak Samaj · West Bengal Initiative</p>
           <h1>
             <T
@@ -29,7 +44,10 @@ export default function InitiativePage() {
           </p>
           <div className="hero-actions">
             <Link className="btn-gold" href="/initiatives/amul-gobardhan/assistant" prefetch={false}>
-              <T bn="BKS সহকারীকে জিজ্ঞাসা করুন" en="Ask the BKS Assistant" />
+              <T
+                bn="BKS Amul ও GOBARdhan সহকারীকে জিজ্ঞাসা করুন"
+                en="Ask the BKS Amul & GOBARdhan Assistant"
+              />
             </Link>
             <a className="btn-secondary" href="#sources">
               <T bn="সূত্র ও যাচাই" en="Sources & verification" />
@@ -43,7 +61,7 @@ export default function InitiativePage() {
           <h2>
             <T bn="এই BKS উদ্যোগ কী?" en="What is this BKS initiative?" />
           </h2>
-          <p>
+          <p className="initiative-lead">
             <T
               bn="তিনটি স্তর: (১) বিদ্যমান Amul উপস্থাপনা BKS ব্যানারে, (২) ভবিষ্যৎ BKS YouTube, (৩) Amul + GOBARdhan তথ্য সহকারী। BKS তথ্য দেয় — সরকার বা Amul নয়।"
               en="Three layers: (1) the existing Amul presentation under a BKS banner, (2) future BKS YouTube, (3) an Amul + GOBARdhan information assistant. BKS informs — it is not the government and not Amul."
@@ -58,8 +76,17 @@ export default function InitiativePage() {
             <T bn="কেন Amul?" en="Why Amul?" />
           </h2>
           <p className="pending">Pending source verification on rupee figures</p>
-          <div className="tile-grid">
-            <article className="tile">
+          <div className="featured-note">
+            <h3>Sankrail</h3>
+            <p>
+              <T
+                bn="উপস্থাপনায় হাওড়ার সাঁকরাইল, ₹৭০০ কোটি, ৩০ লক্ষ লিটার/দিন — যাচাই বাকি। কৃষক প্রতি উপহার নয়।"
+                en="Presentation names Sankrail, Howrah, ₹700 crore, 30 lakh L/day — pending primary source. Not a per-farmer gift."
+              />
+            </p>
+          </div>
+          <ul className="support-list">
+            <li>
               <h3>
                 <T bn="৩-স্তর সমবায়" en="3-tier cooperative" />
               </h3>
@@ -69,17 +96,8 @@ export default function InitiativePage() {
                   en="Village society → district union → state federation. A model, not a price guarantee."
                 />
               </p>
-            </article>
-            <article className="tile">
-              <h3>Sankrail</h3>
-              <p>
-                <T
-                  bn="উপস্থাপনায় হাওড়ার সাঁকরাইল, ₹৭০০ কোটি, ৩০ লক্ষ লিটার/দিন — যাচাই বাকি। কৃষক প্রতি উপহার নয়।"
-                  en="Presentation names Sankrail, Howrah, ₹700 crore, 30 lakh L/day — pending primary source. Not a per-farmer gift."
-                />
-              </p>
-            </article>
-            <article className="tile">
+            </li>
+            <li>
               <h3>
                 <T bn="গ্রাম সমিতি" en="Village society" />
               </h3>
@@ -89,8 +107,8 @@ export default function InitiativePage() {
                   en="Presentation steps: gather, e-RCS, connect with the union. The union confirms."
                 />
               </p>
-            </article>
-          </div>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -108,35 +126,35 @@ export default function InitiativePage() {
           <h3>
             <T bn="তিনটি পথ — মেশাবেন না" en="Three pathways — do not merge" />
           </h3>
-          <div className="tile-grid">
-            <article className="tile">
-              <h3>Track A</h3>
+          <ol className="track-list">
+            <li>
+              <span className="track-kicker">Track A</span>
               <p>
                 <T
                   bn="বাড়ির ছোট biogas। MNRE CFA, প্ল্যান্ট চালুর পর। ২–৪ m³ সাধারণ শ্রেণিতে ₹১৪,৩৫০ (২০২১-২৬)।"
                   en="Household biogas. MNRE CFA after commissioning. 2–4 m³ general category ₹14,350 (2021–26)."
                 />
               </p>
-            </article>
-            <article className="tile">
-              <h3>Track B</h3>
+            </li>
+            <li>
+              <span className="track-kicker">Track B</span>
               <p>
                 <T
                   bn="Community/cluster। জেলা প্রতি সর্বোচ্চ ₹৫০ লক্ষ — কৃষক প্রতি নয়।"
                   en="Community/cluster. Up to ₹50 lakh per district — not per farmer."
                 />
               </p>
-            </article>
-            <article className="tile">
-              <h3>Track C</h3>
+            </li>
+            <li>
+              <span className="track-kicker">Track C</span>
               <p>
                 <T
                   bn="বাণিজ্যিক CBG। Cabinet ৬ আগস্ট ২০২৬: ₹২ কোটি/TPD, ₹২,১১০/MMBTU। আবেদন নির্দেশিকা তখনও প্রকাশিত হয়নি।"
                   en="Commercial CBG. Cabinet 6 Aug 2026: up to ₹2 crore/TPD, ₹2,110/MMBTU. Apply-guidelines were not published as of 16 Aug 2026."
                 />
               </p>
-            </article>
-          </div>
+            </li>
+          </ol>
         </div>
       </section>
 
@@ -151,8 +169,8 @@ export default function InitiativePage() {
               en="Supported journey: dairy / livestock → cattle → dung → biogas / CBG → manure. Opportunity depends on the track."
             />
           </p>
-          <div className="tile-grid">
-            <article className="tile">
+          <ul className="support-list">
+            <li>
               <h3>
                 <T bn="দুধ সমবায়" en="Dairy cooperative" />
               </h3>
@@ -162,8 +180,8 @@ export default function InitiativePage() {
                   en="A village society collects milk. Price, membership and machines are confirmed by the district union — not guaranteed by BKS."
                 />
               </p>
-            </article>
-            <article className="tile">
+            </li>
+            <li>
               <h3>
                 <T bn="গোবর ও সার" en="Dung and manure" />
               </h3>
@@ -173,8 +191,8 @@ export default function InitiativePage() {
                   en="Selling dung or manure is a possibility, not a national MSP. The Banas case study is not an automatic Bengal payment."
                 />
               </p>
-            </article>
-            <article className="tile">
+            </li>
+            <li>
               <h3>
                 <T bn="কমিউনিটি / CBG" en="Community / CBG" />
               </h3>
@@ -184,8 +202,8 @@ export default function InitiativePage() {
                   en="Two cows point to Track A, not commercial CBG. FPO/cluster is Track B. There is no carbon-credit income guarantee."
                 />
               </p>
-            </article>
-          </div>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -200,14 +218,6 @@ export default function InitiativePage() {
               en="Milk cooperatives can implement GOBARdhan. Amul does not own the scheme. Joining does not grant subsidy. Banas (Gujarat) and Sundarini (Bengal) are case studies — not a Bengal guarantee."
             />
           </p>
-        </div>
-      </section>
-
-      <section className="band">
-        <div className="wrap prose">
-          <h2>
-            <T bn="BKS উদ্যোগ কীভাবে সাহায্য করে" en="How the BKS initiative helps" />
-          </h2>
           <p>
             <T
               bn="BKS তথ্য স্তর: উপস্থাপনা, এই পাতা, সহকারী, এবং ভবিষ্যৎ YouTube। BKS সরকারি স্কিম নয়, Amul নয়, অনুমোদন ডেস্ক নয়।"
@@ -217,10 +227,13 @@ export default function InitiativePage() {
         </div>
       </section>
 
-      <section className="band" id="assistant-cta">
+      <section className="service-band" id="assistant-cta">
         <div className="wrap">
           <h2>
-            <T bn="BKS সহকারীকে জিজ্ঞাসা করুন" en="Ask the BKS Assistant" />
+            <T
+              bn="BKS Amul ও GOBARdhan সহকারীকে জিজ্ঞাসা করুন"
+              en="Ask the BKS Amul & GOBARdhan Assistant"
+            />
           </h2>
           <p>
             <T bn="তথ্য ও ব্যাখ্যা — অনুমোদন নয়।" en="Information and explanation — not approval." />
@@ -231,44 +244,36 @@ export default function InitiativePage() {
         </div>
       </section>
 
-      <section className="band muted" id="video">
-        <div className="wrap">
+      <section className="band" id="video">
+        <div className="wrap prose">
           <h2>YouTube</h2>
           <p className="pending">Not published — architecture only</p>
-          <div className="tile-grid">
-            <article className="tile">
-              <h3>
-                <T bn="Amul সুযোগ" en="Amul opportunity" />
-              </h3>
-              <p>publish_status: unpublished</p>
-            </article>
-            <article className="tile">
-              <h3>GOBARdhan explainer</h3>
-              <p>publish_status: unpublished</p>
-            </article>
-            <article className="tile">
-              <h3>
-                <T bn="Amul + GOBARdhan সংযোগ" en="Amul + GOBARdhan connection" />
-              </h3>
-              <p>publish_status: unpublished</p>
-            </article>
-            <article className="tile">
-              <h3>
-                <T bn="কৃষক FAQ" en="Farmer FAQ" />
-              </h3>
-              <p>publish_status: unpublished</p>
-            </article>
-            <article className="tile">
-              <h3>
-                <T bn="বাংলা ব্যাখ্যা" en="Bengali explainer" />
-              </h3>
-              <p>publish_status: unpublished</p>
-            </article>
-          </div>
+          <ul className="unpublished-list">
+            <li>
+              <T bn="Amul সুযোগ" en="Amul opportunity" />
+              <span>unpublished</span>
+            </li>
+            <li>
+              <span>GOBARdhan explainer</span>
+              <span>unpublished</span>
+            </li>
+            <li>
+              <T bn="Amul + GOBARdhan সংযোগ" en="Amul + GOBARdhan connection" />
+              <span>unpublished</span>
+            </li>
+            <li>
+              <T bn="কৃষক FAQ" en="Farmer FAQ" />
+              <span>unpublished</span>
+            </li>
+            <li>
+              <T bn="বাংলা ব্যাখ্যা" en="Bengali explainer" />
+              <span>unpublished</span>
+            </li>
+          </ul>
         </div>
       </section>
 
-      <section className="band" id="sources">
+      <section className="band muted" id="sources">
         <div className="wrap prose">
           <h2>
             <T bn="সূত্র ও যাচাই" en="Verified information / source notes" />
@@ -283,7 +288,7 @@ export default function InitiativePage() {
         </div>
       </section>
 
-      <section className="band muted" id="contact">
+      <section className="band" id="contact">
         <div className="wrap prose">
           <h2>
             <T bn="যোগাযোগ / পরবর্তী ধাপ" en="Contact / next step" />
