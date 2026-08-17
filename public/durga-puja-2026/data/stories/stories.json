@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "note": "Empty by design. Do not invent people. Each well is a reusable story card.",
+    "schema": ["person", "role", "location", "story", "contribution", "source", "verification", "imageId"]
+  },
+  "wells": [
+    { "id": "people", "en": "People", "bn": "মানুষ", "material": "hands", "status": "EMPTY", "placeholder": { "en": "Story coming soon — organisers, neighbours, visitors, with consent.", "bn": "গল্প আসবে — আয়োজক, প্রতিবেশী, অতিথি, সম্মতি নিয়ে।" } },
+    { "id": "craft", "en": "Craft", "bn": "শিল্প", "material": "clay", "status": "EMPTY", "placeholder": { "en": "Story coming soon — clay, bamboo, hands. No unnamed kumor.", "bn": "গল্প আসবে — মাটি, বাঁশ, হাত। নামহীন কুমোর নয়।" } },
+    { "id": "music", "en": "Dhak / Music", "bn": "ঢাক / সঙ্গীত", "material": "drum", "status": "EMPTY", "placeholder": { "en": "Story coming soon — dhakis who have agreed to be named.", "bn": "গল্প আসবে — যাঁরা নাম দিতে রাজি, সেই ঢাকিরা।" } },
+    { "id": "food", "en": "Food", "bn": "খাবার", "material": "kitchen", "status": "EMPTY", "placeholder": { "en": "Story coming soon — kitchen, bhog, cooks. No invented menu.", "bn": "গল্প আসবে — রান্নাঘর, ভোগ, রাঁধুনি। কল্পিত মেনু নয়।" } },
+    { "id": "volunteers", "en": "Volunteers", "bn": "স্বেচ্ছাসেবক", "material": "hands", "status": "EMPTY", "placeholder": { "en": "Story coming soon — no roster until volunteer intake is approved.", "bn": "গল্প আসবে — স্বেচ্ছাসেবক তালিকা এখন খোলা নয়।" } },
+    { "id": "neighbourhood", "en": "Neighbourhood", "bn": "পাড়া", "material": "street", "status": "EMPTY", "placeholder": { "en": "Story coming soon — the actual para, when a place is named.", "bn": "গল্প আসবে — স্থান নাম হলে সেই পাড়া।" } },
+    { "id": "tradition", "en": "Tradition", "bn": "ঐতিহ্য", "material": "lamp", "status": "EMPTY", "placeholder": { "en": "Story coming soon — continuity told by people who keep it.", "bn": "গল্প আসবে — যাঁরা রেখেছেন, তাঁদের মুখে।" } },
+    { "id": "participation", "en": "Participation", "bn": "যোগদান", "material": "path", "status": "EMPTY", "placeholder": { "en": "Story coming soon — how people actually took part, after the season.", "bn": "গল্প আসবে — মরসুমের পর, কীভাবে মানুষ যোগ দিয়েছিল।" } }
+  ],
+  "stories": []
+}

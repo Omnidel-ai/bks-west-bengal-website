@@ -1,0 +1,54 @@
+{
+  "meta": { "lang": "en", "governance": "All heroes PROPOSED. Default is Phase-0 H1. CONF-PUJA-001 open." },
+  "defaultId": "H1",
+  "variants": [
+    {
+      "id": "H1",
+      "label": "H1 — institutional season",
+      "governance": "PROPOSED",
+      "who": "Bharatiya Krishak Samaj, West Bengal",
+      "what": "A seasonal Durga Puja gathering. Culture first. Krishak Samaj is a path beside it.",
+      "when": "Sharadiya 2026. Civic holidays are documented. Ritual clocks await a named Panjika.",
+      "where": "West Bengal. Exact place to be announced.",
+      "why": "Neighbourhoods already gather. The Samaj will not invent a second religion, nor hide that it is a farmers’ samaj.",
+      "next": "Read The Puja. Nothing here enrols you or takes money.",
+      "kicker": "Bharatiya Krishak Samaj · West Bengal",
+      "title": "This autumn, the Samaj sits with the Puja — it does not replace it.",
+      "lede": "Durga Puja in Bengal is neighbourhood, clay, dhak, food and homecoming. Bharatiya Krishak Samaj may keep a seasonal presence in that gathering. Until a venue and a committee are named, this page will not pretend those things exist.",
+      "ctaPrimary": "Read The Puja",
+      "ctaSecondary": "Participate"
+    },
+    {
+      "id": "H2",
+      "label": "H2 — living heritage",
+      "governance": "PROPOSED",
+      "who": "Bharatiya Krishak Samaj, West Bengal",
+      "what": "A seasonal presence beside Bengal’s public Puja — not a claim to own it.",
+      "when": "Sharadiya 2026. Civic dates only, pending Panjika.",
+      "where": "West Bengal. Exact place to be announced.",
+      "why": "UNESCO inscribed Durga Puja in Kolkata in 2021. That inscription is Kolkata’s, not this page.",
+      "next": "Read what is verified about the Puja.",
+      "kicker": "Bharatiya Krishak Samaj · West Bengal",
+      "title": "Clay, dhak, and a neighbourhood — BKS is a guest, not a second festival.",
+      "lede": "The image is clay from the river and returns to water. People walk. Kitchens open. Bharatiya Krishak Samaj does not own that heritage. This site only says where the Samaj might sit beside it in 2026.",
+      "ctaPrimary": "Read The Puja",
+      "ctaSecondary": "Participate"
+    },
+    {
+      "id": "H3",
+      "label": "H3 — participation",
+      "governance": "PROPOSED",
+      "who": "Bharatiya Krishak Samaj, West Bengal",
+      "what": "A gathering with paths to visit, volunteer, support and ask — none of them live as forms.",
+      "when": "Sharadiya 2026. Civic dates only, pending Panjika.",
+      "where": "West Bengal. Exact place to be announced.",
+      "why": "Participation is neighbourhood work, not enrolment, and not a donation counter.",
+      "next": "Choose a path. Support does not collect money.",
+      "kicker": "Bharatiya Krishak Samaj · West Bengal",
+      "title": "Come to understand the Puja. Stay, if you wish, for the Samaj.",
+      "lede": "You can read the Puja, watch the civic calendar, or wait with us until volunteer and support routes are actually open. The farm conversation lives on its own page. It does not rewrite the rite.",
+      "ctaPrimary": "Read The Puja",
+      "ctaSecondary": "Participate"
+    }
+  ]
+}
