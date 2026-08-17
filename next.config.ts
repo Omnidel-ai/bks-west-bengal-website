@@ -12,6 +12,12 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      { source: '/durga-puja-2026', destination: '/durga-puja-2026/index.html' },
+      { source: '/durga-puja-2026/', destination: '/durga-puja-2026/index.html' },
+    ];
+  },
 };
 
 export default nextConfig;

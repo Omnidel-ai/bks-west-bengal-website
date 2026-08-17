@@ -84,7 +84,10 @@
       "triggers": [
         "amul opportunity",
         "what is the amul",
-        "amul dairy opportunity"
+        "amul dairy opportunity",
+        "amul সুযোগ",
+        "সুযোগ কী",
+        "অমুল সুযোগ"
       ],
       "priority": 72,
       "answer_en": "The Amul Opportunity is a BKS West Bengal information initiative on Amul-pattern cooperative dairy. Village producers form a Village Dairy Cooperative Society (VDCS); the district union processes milk; the state federation (GCMMF / Amul) markets it. BKS explains this model. BKS is not Amul, not a dealership desk, and does not enrol you or guarantee a village milk price.",
@@ -353,7 +356,11 @@
         "3 ta goru",
         "3 cow",
         "তিনটে",
-        "চারটে গরু"
+        "চারটে গরু",
+        "৩টা",
+        "৩ টা গরু",
+        "কোন ট্র্যাক",
+        "কোন track"
       ],
       "priority": 85,
       "answer_en": "Official cluster guidance is a minimum of about 3 to 4 cattle for a household cluster plant; a small 2 cubic metre plant is the usual household size (Track A). A village or FPO slurry hub is Track B (Gram Panchayat / district). A Banas-scale CBG plant is Track C — not a single 3–4 cow farm.",
