@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import InitiativePage from './InitiativePage';
 
 export const metadata: Metadata = {
-  title: 'Amul + GOBARdhan initiative',
+  title: 'Amul Opportunity & GOBARdhan Initiative',
   description:
-    'Bharatiya Krishak Samaj, West Bengal information initiative on Amul cooperative dairy and the GOBARdhan biogas scheme. Not an official Amul website and not a government scheme portal.',
+    'Bharatiya Krishak Samaj, West Bengal: two first-class information initiatives — Amul Opportunity (cooperative dairy) and GOBARdhan Initiative (government biogas/CBG). Not an official Amul website and not a government scheme portal.',
   alternates: {
     canonical: 'https://www.bkswbengal.org/initiatives/amul-gobardhan',
     languages: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'BKS West Bengal — Amul + GOBARdhan',
+    title: 'BKS West Bengal — Amul Opportunity & GOBARdhan Initiative',
     description:
       'Farmer-facing information on cooperative dairy and GOBARdhan. BKS explains; it does not approve subsidies.',
     locale: 'bn_IN',

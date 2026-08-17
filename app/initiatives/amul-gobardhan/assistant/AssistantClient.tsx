@@ -17,6 +17,16 @@ export default function AssistantClient() {
   const live = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const topic = params.get('topic');
+    if (topic === 'amul') {
+      setInput(bn ? 'Amul সুযোগ কী?' : 'What is the Amul opportunity?');
+    } else if (topic === 'gobardhan') {
+      setInput(bn ? 'GOBARdhan কী?' : 'What is GOBARdhan?');
+    }
+  }, [bn]);
+
+  useEffect(() => {
     fetch('/amul-gobardhan/knowledge.json')
       .then((r) => {
         if (!r.ok) throw new Error('knowledge pack missing');
@@ -46,7 +56,7 @@ export default function AssistantClient() {
       {
         role: 'assistant',
         text: res.answer,
-        meta: `${res.claim_type || ''} · ${res.verification_status || ''} · ${res.id}`,
+        meta: `${res.classifier_domain} · ${res.claim_type || ''} · ${res.verification_status || ''} · ${res.id}`,
       },
     ]);
     setInput('');
@@ -56,9 +66,9 @@ export default function AssistantClient() {
     <section className="band">
       <div className="wrap prose">
         <p className="kicker" style={{ color: 'var(--paddy-gold)' }}>
-          BKS Assistant
+          BKS Amul & GOBARdhan Assistant
         </p>
-        <h1>{bn ? 'Amul ও GOBARdhan তথ্য সহকারী' : 'Amul + GOBARdhan information assistant'}</h1>
+        <h1>{bn ? 'BKS Amul ও GOBARdhan সহকারী' : 'BKS Amul & GOBARdhan Assistant'}</h1>
         <p>
           {bn
             ? 'এটি তথ্য দেয়, আবেদন অনুমোদন করে না। Gemini Live চাবি লাগে না — যাচাইকৃত জ্ঞানভাণ্ডার।'
