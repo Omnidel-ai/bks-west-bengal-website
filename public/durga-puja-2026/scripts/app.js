@@ -226,11 +226,12 @@
   setLang(lang === "bn" ? "bn" : "en");
   show(pageFromHash());
 
+  const dataBase = "/durga-puja-2026/";
   Promise.all([
-    fetch("data/content/en/heroes.json").then((r) => r.json()),
-    fetch("data/content/bn/heroes.json").then((r) => r.json()),
-    fetch("data/events/events.json").then((r) => r.json()),
-    fetch("data/stories/stories.json").then((r) => r.json())
+    fetch(dataBase + "data/content/en/heroes.json").then((r) => r.json()),
+    fetch(dataBase + "data/content/bn/heroes.json").then((r) => r.json()),
+    fetch(dataBase + "data/events/events.json").then((r) => r.json()),
+    fetch(dataBase + "data/stories/stories.json").then((r) => r.json())
   ])
     .then(([enH, bnH, events, stories]) => {
       state.heroes.en = enH;
