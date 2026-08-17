@@ -13,46 +13,35 @@ export default function SiteFooter() {
           <p>{t.brandRegion}</p>
           <p>{t.common.stateOffice}</p>
           <p>
+            Email:{' '}
             <a href="mailto:contact@bkswbengal.org">contact@bkswbengal.org</a>
             <br />
-            <a href="tel:+918655246764">+91 86552 46764</a>
+            Phone: <a href="tel:+918655246764">+91 86552 46764</a>
           </p>
         </div>
         <div>
-          <h3>{t.nav.explore}</h3>
-          <ul className="footer-list">
-            <li>
-              <Link href="/about">{t.nav.aboutBks}</Link>
-            </li>
-            <li>
-              <Link href="/west-bengal">{t.nav.westBengal}</Link>
-            </li>
-            <li>
-              <Link href="/leadership">{t.nav.leadership}</Link>
-            </li>
-            <li>
-              <Link href="/presence">{t.nav.presence}</Link>
-            </li>
-          </ul>
+          <h3>{t.nav.intro}</h3>
+          <p>
+            <Link href="/about">{t.nav.about}</Link>
+            <br />
+            <Link href="/west-bengal">{t.nav.westBengal}</Link>
+            <br />
+            <Link href="/leadership">{t.nav.leadership}</Link>
+            <br />
+            <Link href="/presence">{t.nav.presence}</Link>
+          </p>
         </div>
         <div>
-          <h3>{t.nav.initiatives}</h3>
-          <ul className="footer-list">
-            <li>
-              <Link href="/initiatives/amul-gobardhan">{t.nav.amulGobardhan}</Link>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h3>{t.nav.getInvolved}</h3>
-          <ul className="footer-list">
-            <li>
-              <Link href="/apply">{t.nav.apply}</Link>
-            </li>
-            <li>
-              <Link href="/appointment">{t.nav.appointment}</Link>
-            </li>
-          </ul>
+          <h3>{t.nav.learn}</h3>
+          <p>
+            <Link href="/media">{t.nav.media}</Link>
+            <br />
+            <Link href="/ai">{t.nav.ai}</Link>
+            <br />
+            <Link href="/initiatives/amul-gobardhan">{t.nav.amulGobardhan}</Link>
+            <br />
+            <Link href="/apply">{t.nav.apply}</Link>
+          </p>
         </div>
       </div>
       <div className="wrap footer-quote">{t.common.footerQuote}</div>
