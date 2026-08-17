@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "note": "Civic dates from WB 4188-F(P2) aligned with Drik Panchang Kolkata for Saptami–Dashami. Not a BKS programme. No muhurat clocks. CONF-PUJA-DATES-001 open.",
+    "last_updated": "2026-08-14"
+  },
+  "events": [
+    {
+      "event_id": "2026-mahalaya",
+      "title": { "en": "Mahalaya", "bn": "মহালয়া" },
+      "date": "2026-10-10",
+      "tithi": null,
+      "start_time": null,
+      "end_time": null,
+      "location": null,
+      "category": "ritual",
+      "description": {
+        "en": "Civic holiday in West Bengal. Dawn radio / Chandi path is cultural memory, not a BKS broadcast claim.",
+        "bn": "পশ্চিমবঙ্গের নাগরিক ছুটি। ভোরের চণ্ডীপাঠ সাংস্কৃতিক স্মৃতি, বি কে এস-এর সম্প্রচারের দাবি নয়।"
+      },
+      "audience": "public",
+      "status": "civic-only",
+      "source": "SRC-WBGOT-001",
+      "last_updated": "2026-08-14",
+      "sharePath": "/programme#2026-mahalaya",
+      "verification": "pending-ritual-panjika",
+      "verification_status": "pending_panjika",
+      "content_status": "RESEARCH-DERIVED"
+    },
+    {
+      "event_id": "2026-shashthi",
+      "title": { "en": "Maha Shashthi (civic)", "bn": "মহাষষ্ঠী (নাগরিক)" },
+      "date": "2026-10-17",
+      "tithi": null,
+      "start_time": null,
+      "end_time": null,
+      "location": null,
+      "category": "ritual",
+      "description": {
+        "en": "Named Maha Shashthi on the state holiday list. Drik Panchang Kolkata also marks 16 October as Shashthi. Do not hide that nuance.",
+        "bn": "রাজ্যের ছুটির তালিকায় মহাষষ্ঠী। দ্রিক পঞ্চাঙ্গে ১৬ অক্টোবরও ষষ্ঠী। সেই তফাত লুকানো নয়।"
+      },
+      "audience": "public",
+      "status": "civic-only",
+      "source": "SRC-WBGOT-001",
+      "last_updated": "2026-08-14",
+      "sharePath": "/programme#2026-shashthi",
+      "verification": "pending-ritual-panjika",
+      "verification_status": "pending_panjika",
+      "content_status": "RESEARCH-DERIVED"
+    },
+    {
+      "event_id": "2026-saptami",
+      "title": { "en": "Maha Saptami (civic)", "bn": "মহা সপ্তমী (নাগরিক)" },
+      "date": "2026-10-18",
+      "tithi": null,
+      "start_time": null,
+      "end_time": null,
+      "location": null,
+      "category": "ritual",
+      "description": {
+        "en": "Sunday civic day. Kolabou / Nabapatrika is a common Saptami rite in Bengal — not listed here as a BKS ceremony.",
+        "bn": "রবিবারের নাগরিক দিন। কলাবউ / নবপত্রিকা বাংলার সাধারণ সপ্তমী আচার — বি কে এস-এর অনুষ্ঠান বলে লেখা নয়।"
+      },
+      "audience": "public",
+      "status": "civic-only",
+      "source": "SRC-WBGOT-001",
+      "last_updated": "2026-08-14",
+      "sharePath": "/programme#2026-saptami",
+      "verification": "pending-ritual-panjika",
+      "verification_status": "pending_panjika",
+      "content_status": "RESEARCH-DERIVED"
+    },
+    {
+      "event_id": "2026-ashtami",
+      "title": { "en": "Maha Ashtami (civic)", "bn": "মহাষ্টমী (নাগরিক)" },
+      "date": "2026-10-19",
+      "tithi": null,
+      "start_time": null,
+      "end_time": null,
+      "location": null,
+      "category": "ritual",
+      "description": {
+        "en": "Public holiday. Sandhi Puja clock window is not printed until a Panjika is named.",
+        "bn": "সরকারি ছুটি। সন্ধি পূজার ঘড়ি পঞ্জিকা না-মানা পর্যন্ত ছাপা হবে না।"
+      },
+      "audience": "public",
+      "status": "civic-only",
+      "source": "SRC-WBGOT-001",
+      "last_updated": "2026-08-14",
+      "sharePath": "/programme#2026-ashtami",
+      "verification": "pending-ritual-panjika",
+      "verification_status": "pending_panjika",
+      "content_status": "RESEARCH-DERIVED"
+    },
+    {
+      "event_id": "2026-navami",
+      "title": { "en": "Maha Navami (civic)", "bn": "মহানবমী (নাগরিক)" },
+      "date": "2026-10-20",
+      "tithi": null,
+      "start_time": null,
+      "end_time": null,
+      "location": null,
+      "category": "ritual",
+      "description": {
+        "en": "Public holiday. Not a BKS homa listing.",
+        "bn": "সরকারি ছুটি। বি কে এস-এর হোমের তালিকা নয়।"
+      },
+      "audience": "public",
+      "status": "civic-only",
+      "source": "SRC-WBGOT-001",
+      "last_updated": "2026-08-14",
+      "sharePath": "/programme#2026-navami",
+      "verification": "pending-ritual-panjika",
+      "verification_status": "pending_panjika",
+      "content_status": "RESEARCH-DERIVED"
+    },
+    {
+      "event_id": "2026-dashami",
+      "title": { "en": "Dashami (civic)", "bn": "দশমী (নাগরিক)" },
+      "date": "2026-10-21",
+      "tithi": null,
+      "start_time": null,
+      "end_time": null,
+      "location": null,
+      "category": "immersion",
+      "description": {
+        "en": "Public holiday. Immersion hours are set by police or district authorities, not by this site.",
+        "bn": "সরকারি ছুটি। বিসর্জনের সময় পুলিশ বা জেলা প্রশাসন ঠিক করে, এই সাইট নয়।"
+      },
+      "audience": "public",
+      "status": "civic-only",
+      "source": "SRC-WBGOT-001",
+      "last_updated": "2026-08-14",
+      "sharePath": "/programme#2026-dashami",
+      "verification": "pending-ritual-panjika",
+      "verification_status": "pending_panjika",
+      "content_status": "RESEARCH-DERIVED"
+    }
+  ]
+}

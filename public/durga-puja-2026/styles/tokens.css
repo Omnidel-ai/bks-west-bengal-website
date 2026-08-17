@@ -1,0 +1,54 @@
+/* BKS digital tokens — copied from Brand System v1.2.0 as documented values.
+   Not a new palette. Logo pigments are logo-only. No seasonal vermillion. */
+
+:root {
+  --bks-logo-green-text: #0e5306;
+  --bks-logo-blue-annadata: #00168b;
+
+  --color-brand-primary: #163a26;
+  --color-brand-primary-soft: #1f5237;
+  --color-brand-primary-deep: #0f2818;
+  --color-brand-secondary: #c98a1f;
+  /* Documented Phase-1 addition: tint of brand gold for draft/governance banners.
+     Not a vermillion seasonal palette. Not a festival token. */
+  --color-brand-secondary-tint: #fbeecb;
+  --color-brand-accent: #a6461f;
+  --color-surface-default: #f6f1e4;
+  --color-surface-card: #fffdf7;
+  --color-surface-raised: #ffffff;
+  --color-text-primary: #201a10;
+  --color-text-secondary: #4a3f2a;
+  --color-text-muted: #7a6d52;
+  --color-text-on-brand: #f3ecdb;
+  --color-border-default: #ddd0ab;
+  --color-action-primary: #c98a1f;
+  --color-action-primary-text: #201a10;
+
+  --font-display: "Baloo Da 2", "Nirmala UI", "Noto Sans Bengali", system-ui, sans-serif;
+  --font-text: "Hind Siliguri", "Hind", "Nirmala UI", "Noto Sans", "Segoe UI", system-ui, sans-serif;
+
+  --size-body: 1.0625rem;
+  --size-h1: clamp(2rem, 5vw, 3.2rem);
+  --size-h2: clamp(1.35rem, 3vw, 1.85rem);
+  --tap-min: 48px;
+  --wrap: min(42rem, 100%);
+  --wrap-wide: min(72rem, 100%);
+  --space-section: clamp(2.5rem, 5vw, 4.5rem);
+  --radius-card: 14px;
+  --shadow-quiet: 0 1px 0 rgba(32, 26, 16, 0.04), 0 12px 32px rgba(15, 40, 24, 0.06);
+
+  /* Editorial slot materials — derived from BKS surfaces, not a festival palette.
+     Used only for honest photograph-pending fields (clay, light, weave). */
+  --slot-clay: #d8c4a0;
+  --slot-field: #1a3f2a;
+  --slot-lamp: #efe4c8;
+  --slot-weave: #cbb892;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
