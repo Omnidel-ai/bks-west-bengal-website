@@ -23,47 +23,57 @@ export default function SectionPage({
   ctaHref?: string;
   ctaLabel?: T;
 }) {
-  const { lang, t } = useLang();
+  const { lang } = useLang();
+  const [heroPara, ...rest] = paras;
+
   return (
-    <section className="band">
-      <div className="wrap prose">
-        <p className="kicker" style={{ color: 'var(--paddy-gold)' }}>
-          {kicker[lang]}
-        </p>
-        <h1>{title[lang]}</h1>
-        {paras.map((p) => (
-          <p key={p.en}>{p[lang]}</p>
-        ))}
-        {pillars && (
-          <div className="tile-grid" style={{ marginTop: '1.25rem' }}>
+    <>
+      <section className="section-page-hero">
+        <div className="wrap">
+          <Link className="media-back-link" href="/">
+            Back to home
+          </Link>
+          <span className="eyebrow">{kicker[lang]}</span>
+          <h1>{title[lang]}</h1>
+          <div className="stitch-accent" aria-hidden />
+          {heroPara ? <p>{heroPara[lang]}</p> : null}
+        </div>
+      </section>
+      <section className="home-section">
+        {rest.length > 0 ? (
+          <div className="wrap prose-block page-reading">
+            {rest.map((p) => (
+              <p key={p.en}>{p[lang]}</p>
+            ))}
+          </div>
+        ) : null}
+        {pillars ? (
+          <div className="wrap principle-grid">
             {pillars.map((pillar) => (
-              <article key={pillar.title.en} className="tile">
+              <article key={pillar.title.en} className="note-block">
                 <h3>{pillar.title[lang]}</h3>
                 <p>{pillar.body[lang]}</p>
               </article>
             ))}
           </div>
-        )}
-        {bullets && (
-          <ul>
-            {bullets.map((b) => (
-              <li key={b.en}>{b[lang]}</li>
-            ))}
-          </ul>
-        )}
-        {ctaHref && ctaLabel && (
-          <p style={{ marginTop: '1.25rem' }}>
+        ) : null}
+        {bullets ? (
+          <div className="wrap page-reading">
+            <ul>
+              {bullets.map((b) => (
+                <li key={b.en}>{b[lang]}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+        {ctaHref && ctaLabel ? (
+          <div className="wrap" style={{ marginTop: '1.25rem' }}>
             <Link className="btn-gold" href={ctaHref}>
               {ctaLabel[lang]}
             </Link>
-          </p>
-        )}
-        <p style={{ marginTop: '1.5rem' }}>
-          <Link className="text-link" href="/">
-            ← {t.common.backHome}
-          </Link>
-        </p>
-      </div>
-    </section>
+          </div>
+        ) : null}
+      </section>
+    </>
   );
 }

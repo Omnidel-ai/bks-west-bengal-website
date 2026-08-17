@@ -4,6 +4,7 @@ import SiteFooter from '@/components/site/SiteFooter';
 import SiteHeader from '@/components/site/SiteHeader';
 import { LanguageProvider } from '@/lib/i18n/LanguageProvider';
 import './globals.css';
+import './initiative.css';
 
 const display = Baloo_Da_2({
   subsets: ['bengali', 'latin'],
