@@ -16,6 +16,7 @@ export type Member = {
   slug: string;
   districtId: string;
   name: string;
+  photo?: string;
   publicBackground?: I18nText;
 };
 
@@ -73,6 +74,7 @@ export const members: Member[] = [
     slug: 'buddhadeb-patra',
     districtId: 'paschim-medinipur',
     name: 'Buddhadeb Patra',
+    photo: '/assets/presence/buddhadeb-patra.jpg',
     publicBackground: {
       bn: 'পশ্চিম মেদিনীপুরের BKS উপস্থিতির সঙ্গে যুক্ত।',
       en: 'Associated with BKS presence in Paschim Medinipur.',
@@ -84,6 +86,7 @@ export const members: Member[] = [
     slug: 'rajib-lochan-dey',
     districtId: 'paschim-medinipur',
     name: 'Rajib Lochan Dey',
+    photo: '/assets/presence/rajib-lochan-dey.jpg',
     publicBackground: {
       bn: 'পশ্চিম মেদিনীপুরের BKS উপস্থিতির সঙ্গে যুক্ত।',
       en: 'Associated with BKS presence in Paschim Medinipur.',
@@ -95,6 +98,7 @@ export const members: Member[] = [
     slug: 'apurba-bera',
     districtId: 'paschim-medinipur',
     name: 'Apurba Bera',
+    photo: '/assets/presence/apurba-bera.jpg',
     publicBackground: {
       bn: 'পশ্চিম মেদিনীপুরের BKS উপস্থিতির সঙ্গে যুক্ত।',
       en: 'Associated with BKS presence in Paschim Medinipur.',

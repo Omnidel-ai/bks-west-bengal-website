@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getDistrict, members } from '@/content/presence/districts';
@@ -23,6 +24,15 @@ export default async function MemberPage({ params }: Props) {
         <p className="kicker" style={{ color: 'var(--paddy-gold)' }}>
           {d.officialName}
         </p>
+        {m.photo ? (
+          <Image
+            src={m.photo}
+            alt=""
+            width={180}
+            height={180}
+            className="member-profile-photo"
+          />
+        ) : null}
         <h1>{m.name}</h1>
         <p>{m.publicBackground?.en}</p>
         <p className="note-block">

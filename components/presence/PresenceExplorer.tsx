@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
@@ -116,8 +117,19 @@ export default function PresenceExplorer({ initialSlug }: { initialSlug?: string
                   href={`/presence/west-bengal/${selected.slug}/${m.slug}`}
                   className="member-card"
                 >
-                  <h3>{m.name}</h3>
-                  <p>{m.publicBackground?.[lang]}</p>
+                  {m.photo ? (
+                    <Image
+                      src={m.photo}
+                      alt=""
+                      width={72}
+                      height={72}
+                      className="member-card-photo"
+                    />
+                  ) : null}
+                  <div className="member-card-copy">
+                    <h3>{m.name}</h3>
+                    <p className="member-card-blurb">{m.publicBackground?.[lang]}</p>
+                  </div>
                 </Link>
               ))}
             </div>
