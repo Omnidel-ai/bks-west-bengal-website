@@ -7,7 +7,7 @@ This is **not** farmer mobilization registration
 (`bks_people_mobilization_registrations`) and **not** district leadership
 applications (`bks_district_leadership_applications`).
 
-## Migration to apply later (NOT applied yet)
+## Schema migration
 
 | Item | Value |
 |---|---|
@@ -17,15 +17,14 @@ applications (`bks_district_leadership_applications`).
 | Target URL | `https://lhnorkjfldywnrqqunqn.supabase.co` |
 | Forbidden | KarmYog Vatika and every other Supabase project |
 
-### Apply checklist (human / authorized only)
+## Cutover seed (existing three members)
 
-1. Confirm project ref is `lhnorkjfldywnrqqunqn`.
-2. Open Supabase SQL Editor for that project.
-3. Paste contents of `supabase-bks-district-members.sql` (or run the migration file).
-4. Confirm table `public.bks_district_members` exists with RLS enabled.
-5. Confirm storage bucket `district-members` exists and is public-read.
-6. Set Vercel / `.env.local` env vars (below).
-7. Optionally promote existing static members via `/admin/district-members` — do **not** insert fake production people.
+| Item | Value |
+|---|---|
+| Seed file | `supabase/migrations/20260915120000_seed_paschim_medinipur_members.sql` |
+| Paste mirror | `supabase-seed-paschim-medinipur-members.sql` |
+| Identity | unique `(district_id, slug)` + `on conflict do nothing` |
+| Photos | Keep `/assets/presence/*.jpg` (no bucket move) |
 
 Do **not** drop, truncate, or alter unrelated tables.
 
