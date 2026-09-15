@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import {
-  districts,
   getMembersForDistrict,
   type District,
 } from '@/content/presence/districts';
@@ -32,16 +31,22 @@ function toViewFromStatic(districtId: string): PublicMemberView[] {
 export default function PresenceExplorer({
   initialSlug,
   members: initialMembers,
+  districts,
 }: {
   initialSlug?: string;
   /** Server-resolved members for the initial district (DB or static fallback). */
   members?: PublicMemberView[];
+  /** Merged district catalog with Presence statuses. */
+  districts: District[];
 }) {
   const { lang, t } = useLang();
   const router = useRouter();
-  const [selectedSlug, setSelectedSlug] = useState(
-    initialSlug || 'paschim-medinipur',
-  );
+  const defaultSlug =
+    initialSlug ||
+    districts.find((d) => d.status === 'active')?.slug ||
+    districts[0]?.slug ||
+    'paschim-medinipur';
+  const [selectedSlug, setSelectedSlug] = useState(defaultSlug);
 
   useEffect(() => {
     if (initialSlug) setSelectedSlug(initialSlug);
@@ -53,11 +58,15 @@ export default function PresenceExplorer({
   };
 
   const selected = useMemo(
-    () => districts.find((d) => d.slug === selectedSlug) || districts.find((d) => d.status === 'active')!,
-    [selectedSlug],
+    () =>
+      districts.find((d) => d.slug === selectedSlug) ||
+      districts.find((d) => d.status === 'active') ||
+      districts[0],
+    [selectedSlug, districts],
   );
 
   const team = useMemo(() => {
+    if (!selected) return [];
     // Only trust SSR members for the district they were fetched for.
     if (
       initialMembers !== undefined &&
@@ -68,6 +77,8 @@ export default function PresenceExplorer({
     }
     return toViewFromStatic(selected.id);
   }, [selected, initialSlug, initialMembers]);
+
+  if (!selected) return null;
 
   const statusLabel =
     selected.status === 'active'
@@ -87,7 +98,12 @@ export default function PresenceExplorer({
         <h2 style={{ marginTop: 0, fontFamily: 'var(--font-display)', color: 'var(--field-green)' }}>
           {t.presence.mapTitle}
         </h2>
-        <WestBengalMap lang={lang} selectedSlug={selected.slug} onSelect={selectDistrict} />
+        <WestBengalMap
+          lang={lang}
+          selectedSlug={selected.slug}
+          onSelect={selectDistrict}
+          districts={districts}
+        />
         <p className="legend">
           <span className="l-active">{t.presence.active}</span>
           <span className="l-indicated">{t.presence.indicated}</span>

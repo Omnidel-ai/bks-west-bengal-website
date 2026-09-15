@@ -1,6 +1,6 @@
 'use client';
 
-import { districts, type District } from '@/content/presence/districts';
+import type { District } from '@/content/presence/districts';
 import type { Lang } from '@/lib/i18n/types';
 import { WB_DISTRICT_PATHS, WB_MAP_VIEWBOX } from '@/lib/presence/wb-district-paths';
 
@@ -8,10 +8,17 @@ type Props = {
   lang: Lang;
   selectedSlug: string;
   onSelect: (slug: string) => void;
+  /** Merged Presence statuses (static + optional DB overrides). */
+  districts: District[];
 };
 
 /** Geographic West Bengal district map. Path IDs match district slugs. */
-export default function WestBengalMap({ lang, selectedSlug, onSelect }: Props) {
+export default function WestBengalMap({
+  lang,
+  selectedSlug,
+  onSelect,
+  districts,
+}: Props) {
   const bySlug = Object.fromEntries(districts.map((d) => [d.slug, d]));
 
   return (

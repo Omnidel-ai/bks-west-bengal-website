@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import PresenceExplorer from '@/components/presence/PresenceExplorer';
 import PresenceIntro from '@/components/presence/PresenceIntro';
 import { getPublicMembersForDistrict } from '@/lib/district-members/public';
+import { getDistrictsWithPresenceStatus } from '@/lib/district-members/presence-status';
 
 export const metadata: Metadata = {
   title: 'Our Presence',
@@ -10,13 +11,20 @@ export const metadata: Metadata = {
 };
 
 export default async function PresencePage() {
-  const members = await getPublicMembersForDistrict('paschim-medinipur');
+  const [districts, members] = await Promise.all([
+    getDistrictsWithPresenceStatus(),
+    getPublicMembersForDistrict('paschim-medinipur'),
+  ]);
   return (
     <>
       <PresenceIntro />
       <section className="band muted">
         <div className="wrap">
-          <PresenceExplorer initialSlug="paschim-medinipur" members={members} />
+          <PresenceExplorer
+            initialSlug="paschim-medinipur"
+            members={members}
+            districts={districts}
+          />
         </div>
       </section>
     </>

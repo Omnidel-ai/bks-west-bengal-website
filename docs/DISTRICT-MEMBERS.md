@@ -1,60 +1,43 @@
-# BKS District Members (Paschim Medinipur Phase 1)
+# BKS District Members (all West Bengal districts)
 
-Isolated public member directory + Bengali admin management for
-**পশ্চিম মেদিনীপুর / `paschim-medinipur`**.
+Reusable public member directory + Bengali admin management for **every**
+district in `content/presence/districts.ts`.
 
 This is **not** farmer mobilization registration
 (`bks_people_mobilization_registrations`) and **not** district leadership
 applications (`bks_district_leadership_applications`).
 
-## Schema migration
+## Schema
 
 | Item | Value |
 |---|---|
-| Migration file | `supabase/migrations/20260915103000_bks_district_members.sql` |
-| Paste mirror | `supabase-bks-district-members.sql` |
+| Members table | `public.bks_district_members` |
+| Presence status overrides | `public.bks_district_presence` |
+| Storage bucket | `district-members` |
 | Target project ref | `lhnorkjfldywnrqqunqn` |
-| Target URL | `https://lhnorkjfldywnrqqunqn.supabase.co` |
-| Forbidden | KarmYog Vatika and every other Supabase project |
 
-## Cutover seed (existing three members)
+District catalog / names / slugs remain in `content/presence/districts.ts`.
+`bks_district_presence` only overrides Active / Indicated / Upcoming.
 
-| Item | Value |
-|---|---|
-| Seed file | `supabase/migrations/20260915120000_seed_paschim_medinipur_members.sql` |
-| Paste mirror | `supabase-seed-paschim-medinipur-members.sql` |
-| Identity | unique `(district_id, slug)` + `on conflict do nothing` |
-| Photos | Keep `/assets/presence/*.jpg` (no bucket move) |
+## Data script rule
 
-Do **not** drop, truncate, or alter unrelated tables.
-
-## Environment
-
-```bash
-NEXT_PUBLIC_SUPABASE_URL=https://lhnorkjfldywnrqqunqn.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_ROLE_KEY=
-BKS_ADMIN_KEY=
-```
-
-- `BKS_ADMIN_KEY` is server-only. Browser sends it only as `x-admin-key` to admin APIs.
-- Never put `BKS_ADMIN_KEY` or the service-role key in `NEXT_PUBLIC_*`.
-
-## Public fallback (temporary)
-
-Until the migration is applied **and** at least one published row exists for
-`paschim-medinipur`, the public Presence UI continues to show the three
-static members from `content/presence/districts.ts`:
-
-- Buddhadeb Patra
-- Rajib Lochan Dey
-- Apurba Bera
-
-That static list is a **temporary compatibility layer**, not the long-term
-source of truth.
+- UI language (bn / hi / en) localizes labels and messages.
+- Canonical member field values use **English/Latin script** (names, village, etc.).
+- Existing seeded Paschim Medinipur bios are grandfathered; do not mass-rewrite.
 
 ## Admin
 
 - Route: `/admin/district-members`
-- Auth: same sibling pattern — `BKS_ADMIN_KEY` + `x-admin-key`
-- Phase 1 district writes: `paschim-medinipur` only
+- Auth: `BKS_ADMIN_KEY` + `x-admin-key`
+- District selector for all 23 districts
+- Presence status control (separate from members)
+- Member CRUD / photo / publish scoped to the selected district
+
+## Public
+
+- Routes: `/presence/west-bengal/[district]`
+- Map statuses are data-driven (`district.status`)
+- Selected ≠ Active (selection stroke; Active green preserved)
+- Fallback: static members when DB empty/error for that district
+
+Do **not** drop, truncate, or alter unrelated tables.

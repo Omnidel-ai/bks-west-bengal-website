@@ -1,7 +1,10 @@
+import { isKnownDistrictId } from "@/lib/district-members/catalog";
 import {
-  PHASE1_DISTRICT_ID,
-  type MemberWriteInput,
-} from "@/lib/district-members/types";
+  LATIN_SCRIPT_MESSAGE_BN,
+  LATIN_SCRIPT_MESSAGE_EN,
+  isLatinScriptText,
+} from "@/lib/district-members/latin-script";
+import type { MemberWriteInput } from "@/lib/district-members/types";
 
 export type ValidationResult =
   | { ok: true; value: MemberWriteInput }
@@ -34,6 +37,19 @@ function rejectClientPhotoPath(raw: Record<string, unknown>): ValidationResult |
   return null;
 }
 
+function rejectNonLatin(
+  labelEn: string,
+  value: string | null | undefined,
+): ValidationResult | null {
+  if (value == null || value === "") return null;
+  if (isLatinScriptText(value)) return null;
+  return {
+    ok: false,
+    messageBn: `${labelEn}: ${LATIN_SCRIPT_MESSAGE_BN}`,
+    messageEn: `${labelEn}: ${LATIN_SCRIPT_MESSAGE_EN}`,
+  };
+}
+
 function slugifyName(name: string): string {
   const ascii = name
     .normalize("NFKD")
@@ -61,11 +77,11 @@ export function validateMemberCreate(body: unknown): ValidationResult {
 
   const district_id =
     typeof raw.district_id === "string" ? raw.district_id.trim() : "";
-  if (district_id !== PHASE1_DISTRICT_ID) {
+  if (!isKnownDistrictId(district_id)) {
     return {
       ok: false,
-      messageBn: "এই পর্যায়ে শুধু পশ্চিম মেদিনীপুরের সদস্য যোগ করা যায়।",
-      messageEn: "Phase 1 allows only Paschim Medinipur members.",
+      messageBn: "জেলা নির্বাচন সঠিক নয়।",
+      messageEn: "Unknown or unsupported district.",
     };
   }
 
@@ -85,6 +101,27 @@ export function validateMemberCreate(body: unknown): ValidationResult {
       messageEn: "Name is too long.",
     };
   }
+  const nameScript = rejectNonLatin("Name", full_name);
+  if (nameScript) return nameScript;
+
+  const designation = asOptionalString(raw.designation) ?? null;
+  const village = asOptionalString(raw.village) ?? null;
+  const block = asOptionalString(raw.block) ?? null;
+  const area = asOptionalString(raw.area) ?? null;
+  const bio = asOptionalString(raw.bio) ?? null;
+  const category = asOptionalString(raw.category) ?? null;
+
+  for (const [label, val] of [
+    ["Designation", designation],
+    ["Village", village],
+    ["Block", block],
+    ["Area", area],
+    ["Bio", bio],
+    ["Category", category],
+  ] as const) {
+    const bad = rejectNonLatin(label, val);
+    if (bad) return bad;
+  }
 
   const slugRaw =
     typeof raw.slug === "string" && raw.slug.trim()
@@ -102,12 +139,12 @@ export function validateMemberCreate(body: unknown): ValidationResult {
       district_id,
       full_name,
       slug: slugRaw || slugifyName(full_name),
-      designation: asOptionalString(raw.designation) ?? null,
-      village: asOptionalString(raw.village) ?? null,
-      block: asOptionalString(raw.block) ?? null,
-      area: asOptionalString(raw.area) ?? null,
-      bio: asOptionalString(raw.bio) ?? null,
-      category: asOptionalString(raw.category) ?? null,
+      designation,
+      village,
+      block,
+      area,
+      bio,
+      category,
       display_order,
       is_published: Boolean(raw.is_published),
       is_archived: false,
@@ -129,7 +166,7 @@ export function validateMemberPatch(body: unknown): ValidationResult {
   if (photoReject) return photoReject;
 
   const value: MemberWriteInput = {
-    district_id: PHASE1_DISTRICT_ID,
+    district_id: "",
     full_name: "",
   };
 
@@ -143,17 +180,19 @@ export function validateMemberPatch(body: unknown): ValidationResult {
         messageEn: "Name is required.",
       };
     }
+    const nameScript = rejectNonLatin("Name", full_name);
+    if (nameScript) return nameScript;
     value.full_name = full_name;
   }
 
   if ("district_id" in raw) {
     const district_id =
       typeof raw.district_id === "string" ? raw.district_id.trim() : "";
-    if (district_id !== PHASE1_DISTRICT_ID) {
+    if (!isKnownDistrictId(district_id)) {
       return {
         ok: false,
-        messageBn: "এই পর্যায়ে শুধু পশ্চিম মেদিনীপুরের সদস্য সম্পাদনা করা যায়।",
-        messageEn: "Phase 1 allows only Paschim Medinipur members.",
+        messageBn: "জেলা নির্বাচন সঠিক নয়।",
+        messageEn: "Unknown or unsupported district.",
       };
     }
     value.district_id = district_id;
@@ -162,12 +201,34 @@ export function validateMemberPatch(body: unknown): ValidationResult {
   if ("slug" in raw && typeof raw.slug === "string" && raw.slug.trim()) {
     value.slug = raw.slug.trim().toLowerCase().replace(/[^a-z0-9-]+/g, "-");
   }
-  if ("designation" in raw) value.designation = asOptionalString(raw.designation) ?? null;
-  if ("village" in raw) value.village = asOptionalString(raw.village) ?? null;
-  if ("block" in raw) value.block = asOptionalString(raw.block) ?? null;
-  if ("area" in raw) value.area = asOptionalString(raw.area) ?? null;
-  if ("bio" in raw) value.bio = asOptionalString(raw.bio) ?? null;
-  if ("category" in raw) value.category = asOptionalString(raw.category) ?? null;
+
+  const optionalFields = [
+    ["designation", "Designation"],
+    ["village", "Village"],
+    ["block", "Block"],
+    ["area", "Area"],
+    ["category", "Category"],
+  ] as const;
+
+  for (const [key, label] of optionalFields) {
+    if (key in raw) {
+      const v = asOptionalString(raw[key]) ?? null;
+      const bad = rejectNonLatin(label, v);
+      if (bad) return bad;
+      (value as Record<string, unknown>)[key] = v;
+    }
+  }
+
+  // Bio: new Latin content OK; grandfather existing Indic bios without forcing rewrite.
+  if ("bio" in raw) {
+    const bio = asOptionalString(raw.bio) ?? null;
+    if (bio == null || isLatinScriptText(bio)) {
+      value.bio = bio;
+    } else {
+      value.bio = bio;
+    }
+  }
+
   if (
     "display_order" in raw &&
     typeof raw.display_order === "number" &&
