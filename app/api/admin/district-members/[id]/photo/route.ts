@@ -9,7 +9,6 @@ import { isMemberId } from "@/lib/district-members/schema";
 import {
   ADMIN_MEMBER_COLUMNS,
   DISTRICT_MEMBER_STORAGE_BUCKET,
-  PHASE1_DISTRICT_ID,
 } from "@/lib/district-members/types";
 
 export const runtime = "nodejs";
@@ -92,7 +91,6 @@ export async function POST(req: NextRequest, ctx: Ctx) {
       .from("bks_district_members")
       .select("id, district_id")
       .eq("id", id)
-      .eq("district_id", PHASE1_DISTRICT_ID)
       .maybeSingle();
 
     if (findError || !existing) {
@@ -102,7 +100,7 @@ export async function POST(req: NextRequest, ctx: Ctx) {
       );
     }
 
-    const objectPath = `${PHASE1_DISTRICT_ID}/${id}-${randomUUID()}.${ext}`;
+    const objectPath = `${existing.district_id}/${id}-${randomUUID()}.${ext}`;
     const bytes = new Uint8Array(await file.arrayBuffer());
 
     const { error: uploadError } = await supabase.storage
@@ -131,7 +129,7 @@ export async function POST(req: NextRequest, ctx: Ctx) {
       .from("bks_district_members")
       .update({ photo_path: objectPath })
       .eq("id", id)
-      .eq("district_id", PHASE1_DISTRICT_ID)
+      .eq("district_id", existing.district_id)
       .select(ADMIN_MEMBER_COLUMNS)
       .single();
 

@@ -5,10 +5,7 @@ import {
   isSupabaseAdminConfigured,
 } from "@/lib/server/supabase";
 import { isMemberId, validateMemberPatch } from "@/lib/district-members/schema";
-import {
-  ADMIN_MEMBER_COLUMNS,
-  PHASE1_DISTRICT_ID,
-} from "@/lib/district-members/types";
+import { ADMIN_MEMBER_COLUMNS } from "@/lib/district-members/types";
 
 export const runtime = "nodejs";
 
@@ -86,7 +83,6 @@ export async function PATCH(req: NextRequest, ctx: Ctx) {
       .from("bks_district_members")
       .update(patch)
       .eq("id", id)
-      .eq("district_id", PHASE1_DISTRICT_ID)
       .select(ADMIN_MEMBER_COLUMNS)
       .maybeSingle();
 
@@ -141,7 +137,6 @@ export async function DELETE(req: NextRequest, ctx: Ctx) {
       .from("bks_district_members")
       .update({ is_archived: true, is_published: false })
       .eq("id", id)
-      .eq("district_id", PHASE1_DISTRICT_ID)
       .select(ADMIN_MEMBER_COLUMNS)
       .maybeSingle();
 

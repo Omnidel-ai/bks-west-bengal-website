@@ -1,5 +1,8 @@
-/** Phase 1: Paschim Medinipur only for admin writes. */
-export const PHASE1_DISTRICT_ID = "paschim-medinipur" as const;
+/** Canonical Presence district id for Paschim Medinipur (seeded / fallback). */
+export const DEFAULT_DISTRICT_ID = "paschim-medinipur" as const;
+
+/** @deprecated Use DEFAULT_DISTRICT_ID — kept for import compatibility during generalize. */
+export const PHASE1_DISTRICT_ID = DEFAULT_DISTRICT_ID;
 
 export const DISTRICT_MEMBER_STORAGE_BUCKET = "district-members";
 

@@ -4,10 +4,11 @@ import {
   getSupabaseAdminClient,
   isSupabaseAdminConfigured,
 } from "@/lib/server/supabase";
+import { isKnownDistrictId } from "@/lib/district-members/catalog";
 import { validateMemberCreate } from "@/lib/district-members/schema";
 import {
   ADMIN_MEMBER_COLUMNS,
-  PHASE1_DISTRICT_ID,
+  DEFAULT_DISTRICT_ID,
 } from "@/lib/district-members/types";
 
 export const runtime = "nodejs";
@@ -30,10 +31,14 @@ export async function GET(req: NextRequest) {
   if (!isSupabaseAdminConfigured()) return notConfigured();
 
   const districtId =
-    req.nextUrl.searchParams.get("district_id") || PHASE1_DISTRICT_ID;
-  if (districtId !== PHASE1_DISTRICT_ID) {
+    req.nextUrl.searchParams.get("district_id") || DEFAULT_DISTRICT_ID;
+  if (!isKnownDistrictId(districtId)) {
     return NextResponse.json(
-      { error: "Unsupported district", code: "BAD_DISTRICT" },
+      {
+        error: "Unsupported district",
+        code: "BAD_DISTRICT",
+        messageBn: "জেলা নির্বাচন সঠিক নয়।",
+      },
       { status: 400 },
     );
   }

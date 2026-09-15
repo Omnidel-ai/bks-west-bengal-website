@@ -7,7 +7,10 @@ import {
   useState,
   useSyncExternalStore,
 } from "react";
-import { PHASE1_DISTRICT_ID } from "@/lib/district-members/types";
+import { getDistrictCatalog } from "@/lib/district-members/catalog";
+import { LATIN_SCRIPT_MESSAGE_BN } from "@/lib/district-members/latin-script";
+import { DEFAULT_DISTRICT_ID } from "@/lib/district-members/types";
+import type { DistrictStatus } from "@/content/presence/districts";
 
 type AdminMember = {
   id: string;
@@ -49,6 +52,7 @@ const EMPTY_FORM: FormState = {
 };
 
 const KEY_STORAGE = "bks-admin-key";
+const DISTRICT_STORAGE = "bks-admin-district-id";
 const keyListeners = new Set<() => void>();
 
 function keySubscribe(cb: () => void) {
@@ -76,6 +80,22 @@ function writeStoredKey(value: string) {
   for (const cb of keyListeners) cb();
 }
 
+function readStoredDistrict(): string {
+  try {
+    return window.sessionStorage.getItem(DISTRICT_STORAGE) || DEFAULT_DISTRICT_ID;
+  } catch {
+    return DEFAULT_DISTRICT_ID;
+  }
+}
+
+function writeStoredDistrict(id: string) {
+  try {
+    window.sessionStorage.setItem(DISTRICT_STORAGE, id);
+  } catch {
+    /* ignore */
+  }
+}
+
 function memberToForm(m: AdminMember): FormState {
   return {
     full_name: m.full_name,
@@ -89,9 +109,13 @@ function memberToForm(m: AdminMember): FormState {
   };
 }
 
+const catalog = getDistrictCatalog();
+
 export default function DistrictMembersAdmin() {
   const key = useSyncExternalStore(keySubscribe, keySnapshot, () => "");
   const [keyInput, setKeyInput] = useState("");
+  const [districtId, setDistrictId] = useState<string>(DEFAULT_DISTRICT_ID);
+  const [districtStatus, setDistrictStatus] = useState<DistrictStatus>("upcoming");
   const [items, setItems] = useState<AdminMember[] | null>(null);
   const [counts, setCounts] = useState({ total: 0, published: 0, draft: 0 });
   const [loading, setLoading] = useState(false);
@@ -107,13 +131,45 @@ export default function DistrictMembersAdmin() {
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [dbConfigured, setDbConfigured] = useState(true);
 
+  useEffect(() => {
+    setDistrictId(readStoredDistrict());
+  }, []);
+
+  const selectedDistrict = useMemo(
+    () => catalog.find((d) => d.id === districtId) ?? catalog[0],
+    [districtId],
+  );
+
+  const loadPresence = useCallback(
+    async (adminKey: string, id: string) => {
+      try {
+        const res = await fetch("/api/admin/district-presence", {
+          headers: { "x-admin-key": adminKey },
+        });
+        if (!res.ok) return;
+        const body = (await res.json()) as {
+          items: { district_id: string; status: DistrictStatus }[];
+        };
+        const row = body.items?.find((x) => x.district_id === id);
+        if (row?.status) setDistrictStatus(row.status);
+        else {
+          const fallback = catalog.find((d) => d.id === id)?.status;
+          if (fallback) setDistrictStatus(fallback);
+        }
+      } catch {
+        /* ignore */
+      }
+    },
+    [],
+  );
+
   const load = useCallback(
-    async (adminKey: string) => {
+    async (adminKey: string, id: string) => {
       setLoading(true);
       setError("");
       try {
         const params = new URLSearchParams({
-          district_id: PHASE1_DISTRICT_ID,
+          district_id: id,
           status: statusFilter,
         });
         if (search.trim()) params.set("q", search.trim());
@@ -146,20 +202,21 @@ export default function DistrictMembersAdmin() {
         };
         setItems(body.items);
         setCounts(body.counts);
+        await loadPresence(adminKey, id);
       } catch (err) {
         setError(err instanceof Error ? err.message : "তথ্য লোড করা যায়নি। আবার চেষ্টা করুন।");
       } finally {
         setLoading(false);
       }
     },
-    [search, statusFilter],
+    [search, statusFilter, loadPresence],
   );
 
   useEffect(() => {
     if (!key) return;
-    const t = setTimeout(() => void load(key), 0);
+    const t = setTimeout(() => void load(key, districtId), 0);
     return () => clearTimeout(t);
-  }, [key, load]);
+  }, [key, load, districtId]);
 
   useEffect(() => {
     if (!photoFile) {
@@ -178,6 +235,16 @@ export default function DistrictMembersAdmin() {
     if (!value) return;
     setKeyInput("");
     writeStoredKey(value);
+  }
+
+  function changeDistrict(id: string) {
+    writeStoredDistrict(id);
+    setDistrictId(id);
+    setMode("list");
+    setEditingId(null);
+    setForm(EMPTY_FORM);
+    setSuccess("");
+    setError("");
   }
 
   function openCreate() {
@@ -205,6 +272,33 @@ export default function DistrictMembersAdmin() {
     setPhotoFile(null);
   }
 
+  async function saveDistrictStatus(next: DistrictStatus) {
+    if (!key) return;
+    setSaving(true);
+    setError("");
+    setSuccess("");
+    try {
+      const res = await fetch("/api/admin/district-presence", {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          "x-admin-key": key,
+        },
+        body: JSON.stringify({ district_id: districtId, status: next }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(body?.messageBn || body?.error || "স্থিতি হালনাগাদ ব্যর্থ।");
+      }
+      setDistrictStatus(next);
+      setSuccess("জেলার Presence স্থিতি হালনাগাদ হয়েছে।");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "স্থিতি হালনাগাদ ব্যর্থ।");
+    } finally {
+      setSaving(false);
+    }
+  }
+
   async function saveMember() {
     if (!key) return;
     if (!form.full_name.trim()) {
@@ -216,7 +310,7 @@ export default function DistrictMembersAdmin() {
     setSuccess("");
     try {
       const payload = {
-        district_id: PHASE1_DISTRICT_ID,
+        district_id: districtId,
         full_name: form.full_name.trim(),
         designation: form.designation.trim() || null,
         village: form.village.trim() || null,
@@ -281,7 +375,7 @@ export default function DistrictMembersAdmin() {
       setEditingId(null);
       setForm(EMPTY_FORM);
       setPhotoFile(null);
-      await load(key);
+      await load(key, districtId);
     } catch (err) {
       setError(err instanceof Error ? err.message : "সংরক্ষণ করা যায়নি।");
     } finally {
@@ -307,7 +401,7 @@ export default function DistrictMembersAdmin() {
         throw new Error(body?.messageBn || body?.error || "কাজটি ব্যর্থ হয়েছে।");
       }
       setSuccess("হালনাগাদ হয়েছে।");
-      await load(key);
+      await load(key, districtId);
     } catch (err) {
       setError(err instanceof Error ? err.message : "কাজটি ব্যর্থ হয়েছে।");
     } finally {
@@ -333,7 +427,7 @@ export default function DistrictMembersAdmin() {
         throw new Error(body?.messageBn || body?.error || "সরানো যায়নি।");
       }
       setSuccess("সদস্যকে প্রকাশ থেকে সরানো হয়েছে।");
-      await load(key);
+      await load(key, districtId);
     } catch (err) {
       setError(err instanceof Error ? err.message : "সরানো যায়নি।");
     } finally {
@@ -369,7 +463,7 @@ export default function DistrictMembersAdmin() {
           body: JSON.stringify({ display_order: a.display_order }),
         }),
       ]);
-      await load(key);
+      await load(key, districtId);
     } finally {
       setSaving(false);
     }
@@ -379,7 +473,7 @@ export default function DistrictMembersAdmin() {
     return (
       <main className="wrap admin-district-members" style={{ maxWidth: 480, padding: "4rem 1.25rem" }}>
         <p className="kicker" style={{ color: "var(--paddy-gold)" }}>
-          পশ্চিম মেদিনীপুর
+          পশ্চিমবঙ্গ — সব জেলা
         </p>
         <h1 style={{ fontFamily: "var(--font-display)", color: "var(--field-green)", marginTop: 0 }}>
           BKS সদস্য পরিচালনা
@@ -417,7 +511,7 @@ export default function DistrictMembersAdmin() {
       <div className="admin-header-row">
         <div>
           <p className="kicker" style={{ color: "var(--paddy-gold)", marginBottom: 0 }}>
-            পশ্চিম মেদিনীপুর
+            পশ্চিমবঙ্গ
           </p>
           <h1 style={{ fontFamily: "var(--font-display)", color: "var(--field-green)", margin: "0.25rem 0" }}>
             BKS সদস্য পরিচালনা
@@ -433,6 +527,38 @@ export default function DistrictMembersAdmin() {
         >
           প্রস্থান
         </button>
+      </div>
+
+      <label className="admin-field">
+        জেলা নির্বাচন
+        <select
+          value={districtId}
+          onChange={(e) => changeDistrict(e.target.value)}
+        >
+          {catalog.map((d) => (
+            <option key={d.id} value={d.id}>
+              {d.name.bn} / {d.officialName}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <div className="admin-toolbar" style={{ marginBottom: "1rem" }}>
+        <label className="admin-field inline">
+          Presence স্থিতি
+          <select
+            value={districtStatus}
+            disabled={!dbConfigured || saving}
+            onChange={(e) => void saveDistrictStatus(e.target.value as DistrictStatus)}
+          >
+            <option value="upcoming">Upcoming</option>
+            <option value="indicated">Indicated</option>
+            <option value="active">Active</option>
+          </select>
+        </label>
+        <p style={{ margin: 0, color: "var(--ink-mute)", fontSize: "0.9rem" }}>
+          {selectedDistrict.name.bn} — মানচিত্রে এই স্থিতি দেখাবে (সদস্য তালিকা থেকে আলাদা)।
+        </p>
       </div>
 
       {!dbConfigured ? (
@@ -557,59 +683,70 @@ export default function DistrictMembersAdmin() {
       ) : (
         <div className="admin-form-panel">
           <h2 style={{ fontFamily: "var(--font-display)", color: "var(--field-green)" }}>
-            {mode === "create" ? "নতুন সদস্য যোগ করুন" : "সদস্য সম্পাদনা"}
+            {mode === "create" ? "নতুন সদস্য যোগ করুন" : "সদস্য সম্পাদনা"} — {selectedDistrict.name.bn}
           </h2>
+          <p className="note-block" style={{ marginTop: 0 }}>
+            {LATIN_SCRIPT_MESSAGE_BN}
+          </p>
           {error ? <p className="admin-msg error" role="alert">{error}</p> : null}
 
           <label className="admin-field">
-            নাম *
+            নাম * (English/Latin)
             <input
               value={form.full_name}
               onChange={(e) => setForm((f) => ({ ...f, full_name: e.target.value }))}
+              placeholder="Buddhadeb Patra"
+              lang="en"
               required
             />
           </label>
           <label className="admin-field">
-            পরিচয় / দায়িত্ব
+            পরিচয় / দায়িত্ব (English/Latin)
             <input
               value={form.designation}
               onChange={(e) => setForm((f) => ({ ...f, designation: e.target.value }))}
+              lang="en"
             />
           </label>
           <label className="admin-field">
-            গ্রাম
+            গ্রাম (English/Latin)
             <input
               value={form.village}
               onChange={(e) => setForm((f) => ({ ...f, village: e.target.value }))}
+              lang="en"
             />
           </label>
           <label className="admin-field">
-            ব্লক
+            ব্লক (English/Latin)
             <input
               value={form.block}
               onChange={(e) => setForm((f) => ({ ...f, block: e.target.value }))}
+              lang="en"
             />
           </label>
           <label className="admin-field">
-            এলাকা
+            এলাকা (English/Latin)
             <input
               value={form.area}
               onChange={(e) => setForm((f) => ({ ...f, area: e.target.value }))}
+              lang="en"
             />
           </label>
           <label className="admin-field">
-            সংক্ষিপ্ত পরিচিতি
+            সংক্ষিপ্ত পরিচিতি (English/Latin)
             <textarea
               rows={4}
               value={form.bio}
               onChange={(e) => setForm((f) => ({ ...f, bio: e.target.value }))}
+              lang="en"
             />
           </label>
           <label className="admin-field">
-            বিভাগ (ঐচ্ছিক)
+            বিভাগ (ঐচ্ছিক, English/Latin)
             <input
               value={form.category}
               onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))}
+              lang="en"
             />
           </label>
 
