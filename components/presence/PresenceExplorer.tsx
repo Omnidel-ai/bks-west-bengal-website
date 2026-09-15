@@ -3,12 +3,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   districts,
   getMembersForDistrict,
   type District,
 } from '@/content/presence/districts';
+import type { PublicMemberView } from '@/lib/district-members/types';
 import { useLang } from '@/lib/i18n/LanguageProvider';
 import WestBengalMap from './WestBengalMap';
 
@@ -16,12 +17,36 @@ function StatusBadge({ status, label }: { status: District['status']; label: str
   return <span className={`badge ${status}`}>{label}</span>;
 }
 
-export default function PresenceExplorer({ initialSlug }: { initialSlug?: string }) {
+function toViewFromStatic(districtId: string): PublicMemberView[] {
+  return getMembersForDistrict(districtId).map((m) => ({
+    id: m.id,
+    slug: m.slug,
+    districtId: m.districtId,
+    name: m.name,
+    photo: m.photo,
+    publicBackground: m.publicBackground,
+    source: 'static-fallback' as const,
+  }));
+}
+
+export default function PresenceExplorer({
+  initialSlug,
+  members: initialMembers,
+}: {
+  initialSlug?: string;
+  /** Server-resolved members for the initial district (DB or static fallback). */
+  members?: PublicMemberView[];
+}) {
   const { lang, t } = useLang();
   const router = useRouter();
   const [selectedSlug, setSelectedSlug] = useState(
     initialSlug || 'paschim-medinipur',
   );
+
+  useEffect(() => {
+    if (initialSlug) setSelectedSlug(initialSlug);
+  }, [initialSlug]);
+
   const selectDistrict = (slug: string) => {
     setSelectedSlug(slug);
     router.replace(`/presence/west-bengal/${slug}`, { scroll: false });
@@ -31,7 +56,19 @@ export default function PresenceExplorer({ initialSlug }: { initialSlug?: string
     () => districts.find((d) => d.slug === selectedSlug) || districts.find((d) => d.status === 'active')!,
     [selectedSlug],
   );
-  const team = getMembersForDistrict(selected.id);
+
+  const team = useMemo(() => {
+    // Only trust SSR members for the district they were fetched for.
+    if (
+      initialMembers !== undefined &&
+      initialSlug &&
+      selected.slug === initialSlug
+    ) {
+      return initialMembers;
+    }
+    return toViewFromStatic(selected.id);
+  }, [selected, initialSlug, initialMembers]);
+
   const statusLabel =
     selected.status === 'active'
       ? t.presence.active
@@ -120,7 +157,7 @@ export default function PresenceExplorer({ initialSlug }: { initialSlug?: string
                   {m.photo ? (
                     <Image
                       src={m.photo}
-                      alt=""
+                      alt={m.name}
                       width={72}
                       height={72}
                       className="member-card-photo"
@@ -128,7 +165,9 @@ export default function PresenceExplorer({ initialSlug }: { initialSlug?: string
                   ) : null}
                   <div className="member-card-copy">
                     <h3>{m.name}</h3>
-                    <p className="member-card-blurb">{m.publicBackground?.[lang]}</p>
+                    <p className="member-card-blurb">
+                      {m.designation || m.publicBackground?.[lang] || m.bio}
+                    </p>
                   </div>
                 </Link>
               ))}

@@ -2,21 +2,31 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getDistrict, members } from '@/content/presence/districts';
+import { getDistrict } from '@/content/presence/districts';
+import { getPublicMember } from '@/lib/district-members/public';
 
 type Props = { params: Promise<{ district: string; member: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { member } = await params;
-  const m = members.find((x) => x.slug === member);
+  const { district, member } = await params;
+  const d = getDistrict(district);
+  if (!d) return { title: 'Member' };
+  const m = await getPublicMember(d.id, member);
   return { title: m ? m.name : 'Member' };
 }
 
 export default async function MemberPage({ params }: Props) {
   const { district, member } = await params;
   const d = getDistrict(district);
-  const m = members.find((x) => x.slug === member && x.districtId === d?.id);
-  if (!d || !m) notFound();
+  if (!d) notFound();
+  const m = await getPublicMember(d.id, member);
+  if (!m) notFound();
+
+  const blurb =
+    m.publicBackground?.bn ||
+    m.publicBackground?.en ||
+    m.bio ||
+    '';
 
   return (
     <section className="band">
@@ -27,20 +37,26 @@ export default async function MemberPage({ params }: Props) {
         {m.photo ? (
           <Image
             src={m.photo}
-            alt=""
+            alt={m.name}
             width={180}
             height={180}
             className="member-profile-photo"
           />
         ) : null}
         <h1>{m.name}</h1>
-        <p>{m.publicBackground?.en}</p>
+        {m.designation ? <p><strong>{m.designation}</strong></p> : null}
+        {[m.village, m.area, m.block].filter(Boolean).length ? (
+          <p style={{ color: 'var(--ink-soft)' }}>
+            {[m.village, m.area, m.block].filter(Boolean).join(', ')}
+          </p>
+        ) : null}
+        {blurb ? <p>{blurb}</p> : null}
         <p className="note-block">
           Public profile only. BKS designations are not published here until officially verified.
         </p>
         <p>
-          <Link className="text-link" href="/presence">
-            ← Our Presence
+          <Link className="text-link" href={`/presence/west-bengal/${d.slug}`}>
+            ← {d.name.bn}
           </Link>
         </p>
       </div>

@@ -68,6 +68,11 @@ export const districts: District[] = [
   { id: 'uttar-dinajpur', slug: 'uttar-dinajpur', officialName: 'Uttar Dinajpur', name: { bn: 'উত্তর দিনাজপুর', en: 'Uttar Dinajpur', hi: 'उत्तर दिनाजपुर' }, status: 'upcoming' },
 ];
 
+/**
+ * Temporary public compatibility layer for Paschim Medinipur members.
+ * Long-term source of truth: public.bks_district_members (after migration apply).
+ * Do not treat this array as the permanent CMS — see docs/DISTRICT-MEMBERS.md.
+ */
 export const members: Member[] = [
   {
     id: 'buddhadeb-patra',
