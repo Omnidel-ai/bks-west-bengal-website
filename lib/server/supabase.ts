@@ -36,6 +36,11 @@ export function getSupabaseAnonClient(): SupabaseClient {
 
   cachedAnon = createClient(url, anonKey, {
     auth: { persistSession: false, autoRefreshToken: false },
+    global: {
+      // Next.js App Router otherwise caches fetch and freezes Presence data.
+      fetch: (input, init) =>
+        fetch(input, { ...init, cache: "no-store" }),
+    },
   });
   return cachedAnon;
 }

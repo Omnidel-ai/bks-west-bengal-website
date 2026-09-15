@@ -412,7 +412,7 @@ export default function DistrictMembersAdmin() {
   async function archiveMember(id: string, name: string) {
     if (!key) return;
     const ok = window.confirm(
-      `আপনি কি "${name}" সদস্যকে তালিকা থেকে সরিয়ে সংরক্ষণাগারে রাখতে চান?\n\n(স্থায়ী মুছে ফেলা নয় — প্রকাশ থেকে সরানো হবে।)`,
+      `আপনি কি "${name}" সদস্যকে সক্রিয় তালিকা থেকে সরাতে চান?\n\nDelete/Remove = সংরক্ষণাগার (soft).\nডাটাবেস থেকে স্থায়ীভাবে মুছে ফেলা হবে না।`,
     );
     if (!ok) return;
     setSaving(true);
@@ -672,7 +672,7 @@ export default function DistrictMembersAdmin() {
                       onClick={() => void archiveMember(m.id, m.full_name)}
                       disabled={saving}
                     >
-                      প্রকাশ থেকে সরান
+                      মুছে ফেলুন / সরান
                     </button>
                   </div>
                 </li>

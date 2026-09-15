@@ -47,10 +47,28 @@ export default function PresenceExplorer({
     districts[0]?.slug ||
     'paschim-medinipur';
   const [selectedSlug, setSelectedSlug] = useState(defaultSlug);
+  const [liveMembers, setLiveMembers] = useState<PublicMemberView[] | null>(
+    initialMembers ?? null,
+  );
+  const [liveDistrictId, setLiveDistrictId] = useState<string | null>(
+    initialSlug
+      ? districts.find((d) => d.slug === initialSlug)?.id ?? null
+      : null,
+  );
+  const [membersLoading, setMembersLoading] = useState(false);
 
   useEffect(() => {
     if (initialSlug) setSelectedSlug(initialSlug);
   }, [initialSlug]);
+
+  useEffect(() => {
+    if (initialMembers !== undefined && initialSlug) {
+      setLiveMembers(initialMembers);
+      setLiveDistrictId(
+        districts.find((d) => d.slug === initialSlug)?.id ?? null,
+      );
+    }
+  }, [initialMembers, initialSlug, districts]);
 
   const selectDistrict = (slug: string) => {
     setSelectedSlug(slug);
@@ -65,9 +83,43 @@ export default function PresenceExplorer({
     [selectedSlug, districts],
   );
 
+  // Soft-nav can change selection before SSR props refresh — load live DB members.
+  useEffect(() => {
+    if (!selected) return;
+    if (initialSlug && selected.slug === initialSlug) {
+      return;
+    }
+
+    let cancelled = false;
+    setMembersLoading(true);
+    (async () => {
+      try {
+        const res = await fetch(
+          `/api/presence/district-members?district_id=${encodeURIComponent(selected.id)}`,
+          { cache: 'no-store' },
+        );
+        if (!res.ok) throw new Error('load failed');
+        const body = (await res.json()) as { items?: PublicMemberView[] };
+        if (cancelled) return;
+        const items = Array.isArray(body.items) ? body.items : [];
+        setLiveMembers(items.length ? items : toViewFromStatic(selected.id));
+        setLiveDistrictId(selected.id);
+      } catch {
+        if (cancelled) return;
+        setLiveMembers(toViewFromStatic(selected.id));
+        setLiveDistrictId(selected.id);
+      } finally {
+        if (!cancelled) setMembersLoading(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [selected, initialSlug]);
+
   const team = useMemo(() => {
     if (!selected) return [];
-    // Only trust SSR members for the district they were fetched for.
     if (
       initialMembers !== undefined &&
       initialSlug &&
@@ -75,8 +127,11 @@ export default function PresenceExplorer({
     ) {
       return initialMembers;
     }
+    if (liveDistrictId === selected.id && liveMembers) {
+      return liveMembers;
+    }
     return toViewFromStatic(selected.id);
-  }, [selected, initialSlug, initialMembers]);
+  }, [selected, initialSlug, initialMembers, liveDistrictId, liveMembers]);
 
   if (!selected) return null;
 
@@ -160,6 +215,11 @@ export default function PresenceExplorer({
           <h4 style={{ fontFamily: 'var(--font-display)', color: 'var(--field-green)' }}>
             {t.presence.membersHeading}
           </h4>
+          {membersLoading && team.length === 0 ? (
+            <p className="note-block" role="status">
+              …
+            </p>
+          ) : null}
           {team.length === 0 ? (
             <p className="note-block">{t.presence.noMembers}</p>
           ) : (
@@ -177,6 +237,7 @@ export default function PresenceExplorer({
                       width={72}
                       height={72}
                       className="member-card-photo"
+                      unoptimized={m.photo.includes('supabase.co')}
                     />
                   ) : null}
                   <div className="member-card-copy">
