@@ -17,7 +17,10 @@ applications (`bks_district_leadership_applications`).
 | Target project ref | `lhnorkjfldywnrqqunqn` |
 
 District catalog / names / slugs remain in `content/presence/districts.ts`.
-`bks_district_presence` only overrides Active / Indicated / Upcoming.
+Public map status priority:
+1. ≥1 published, non-archived member → **Active** (automatic green)
+2. else `bks_district_presence` override
+3. else static default in `districts.ts`
 
 ## Data script rule
 
