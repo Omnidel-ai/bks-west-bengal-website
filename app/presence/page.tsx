@@ -4,6 +4,9 @@ import PresenceIntro from '@/components/presence/PresenceIntro';
 import { getPublicMembersForDistrict } from '@/lib/district-members/public';
 import { getDistrictsWithPresenceStatus } from '@/lib/district-members/presence-status';
 
+/** Presence must always reflect live DB members + auto-Active districts. */
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Our Presence',
   description:

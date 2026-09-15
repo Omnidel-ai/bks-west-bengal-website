@@ -95,7 +95,7 @@ export async function getPublicMembersForDistrict(
       .eq("is_archived", false)
       .order("display_order", { ascending: true })
       .order("full_name", { ascending: true })
-      .limit(200);
+      .limit(500);
 
     if (error) {
       console.error("[district-members] public list failed:", error.message);

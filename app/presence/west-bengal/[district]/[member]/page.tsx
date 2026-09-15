@@ -5,6 +5,8 @@ import { notFound } from 'next/navigation';
 import { getDistrict } from '@/content/presence/districts';
 import { getPublicMember } from '@/lib/district-members/public';
 
+export const dynamic = 'force-dynamic';
+
 type Props = { params: Promise<{ district: string; member: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

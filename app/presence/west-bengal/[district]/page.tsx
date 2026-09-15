@@ -5,6 +5,9 @@ import { getDistrict } from '@/content/presence/districts';
 import { getPublicMembersForDistrict } from '@/lib/district-members/public';
 import { getDistrictsWithPresenceStatus } from '@/lib/district-members/presence-status';
 
+/** District Presence pages must always read live published members. */
+export const dynamic = 'force-dynamic';
+
 type Props = { params: Promise<{ district: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
