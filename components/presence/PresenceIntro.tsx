@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useLang } from '@/lib/i18n/LanguageProvider';
 
 export default function PresenceIntro() {
@@ -10,6 +11,11 @@ export default function PresenceIntro() {
         <p className="kicker">{t.presence.kicker}</p>
         <h1>{t.presence.title}</h1>
         <p className="lede">{t.presence.lead}</p>
+        <p style={{ marginTop: '1rem' }}>
+          <Link href="/presence/gallery" className="btn ghost">
+            {t.presence.galleryLink}
+          </Link>
+        </p>
       </div>
     </section>
   );

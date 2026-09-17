@@ -48,6 +48,9 @@ const bn: Dict = {
     selectDistrict: 'একটি জেলা বেছে নিন',
     membersHeading: 'সদস্য',
     noMembers: 'এই জেলার জন্য এখনো প্রকাশযোগ্য সদস্য তালিকা নেই।',
+    galleryLink: 'উপস্থিতি গ্যালারি',
+    galleryEmpty: 'এখনো কোনো প্রকাশিত সদস্য ছবি নেই।',
+    galleryViewMember: 'সদস্যের বিবরণ',
   },
 };
 
@@ -99,6 +102,9 @@ const en: Dict = {
     selectDistrict: 'Choose a district',
     membersHeading: 'Members',
     noMembers: 'No public member list for this district yet.',
+    galleryLink: 'Presence Gallery',
+    galleryEmpty: 'No published member photographs yet.',
+    galleryViewMember: 'View member',
   },
 };
 
@@ -150,6 +156,9 @@ const hi: Dict = {
     selectDistrict: 'एक ज़िला चुनें',
     membersHeading: 'सदस्य',
     noMembers: 'इस ज़िले के लिए अभी सार्वजनिक सदस्य सूची नहीं है।',
+    galleryLink: 'उपस्थिति गैलरी',
+    galleryEmpty: 'अभी कोई प्रकाशित सदस्य फ़ोटो नहीं है।',
+    galleryViewMember: 'सदस्य देखें',
   },
 };
 

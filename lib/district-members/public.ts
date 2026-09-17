@@ -5,6 +5,7 @@ import {
   DISTRICT_MEMBER_STORAGE_BUCKET,
   PUBLIC_MEMBER_COLUMNS,
   type DistrictMemberRow,
+  type PresenceGalleryItem,
   type PublicMemberView,
 } from "@/lib/district-members/types";
 import {
@@ -124,6 +125,76 @@ export async function getPublicMember(
   const fromList = members.find((m) => m.slug === slug);
   if (fromList) return fromList;
   return getStaticFallbackMember(districtId, slug);
+}
+
+export type { PresenceGalleryItem };
+
+/**
+ * Derived Presence Gallery — published, non-archived members that already
+ * have a resolvable photo. No duplicate storage; DB photos remain source of truth.
+ */
+export async function getPresenceGalleryItems(): Promise<PresenceGalleryItem[]> {
+  const { districts } = await import("@/content/presence/districts");
+
+  if (!isSupabaseConfigured()) {
+    return districts.flatMap((d) =>
+      getStaticFallbackMembers(d.id)
+        .filter((m) => Boolean(m.photo))
+        .map((m) => ({
+          id: m.id,
+          name: m.name,
+          photo: m.photo as string,
+          districtId: d.id,
+          districtSlug: d.slug,
+          districtOfficialName: d.officialName,
+          memberSlug: m.slug,
+        })),
+    );
+  }
+
+  try {
+    const supabase = getSupabaseAnonClient();
+    const { data, error } = await supabase
+      .from("bks_district_members")
+      .select(PUBLIC_MEMBER_COLUMNS)
+      .eq("is_published", true)
+      .eq("is_archived", false)
+      .not("photo_path", "is", null)
+      .order("district_id", { ascending: true })
+      .order("display_order", { ascending: true })
+      .order("full_name", { ascending: true })
+      .limit(500);
+
+    if (error) {
+      console.error("[district-members] gallery list failed:", error.message);
+      return [];
+    }
+
+    const byId = new Map(districts.map((d) => [d.id, d]));
+    const items: PresenceGalleryItem[] = [];
+    for (const row of data ?? []) {
+      const view = rowToPublicView(row as DistrictMemberRow);
+      if (!view.photo) continue;
+      const d = byId.get(view.districtId);
+      if (!d) continue;
+      items.push({
+        id: view.id,
+        name: view.name,
+        photo: view.photo,
+        districtId: d.id,
+        districtSlug: d.slug,
+        districtOfficialName: d.officialName,
+        memberSlug: view.slug,
+      });
+    }
+    return items;
+  } catch (err) {
+    console.error(
+      "[district-members] gallery unexpected:",
+      err instanceof Error ? err.message : "unknown",
+    );
+    return [];
+  }
 }
 
 export { resolvePhotoUrl };

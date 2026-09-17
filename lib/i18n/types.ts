@@ -48,5 +48,8 @@ export type Dict = {
     selectDistrict: string;
     membersHeading: string;
     noMembers: string;
+    galleryLink: string;
+    galleryEmpty: string;
+    galleryViewMember: string;
   };
 };

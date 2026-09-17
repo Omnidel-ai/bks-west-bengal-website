@@ -49,6 +49,17 @@ export type PublicMemberView = {
   source: "database" | "static-fallback";
 };
 
+/** Derived Presence Gallery tile — photo must already exist on the member. */
+export type PresenceGalleryItem = {
+  id: string;
+  name: string;
+  photo: string;
+  districtId: string;
+  districtSlug: string;
+  districtOfficialName: string;
+  memberSlug: string;
+};
+
 export type MemberWriteInput = {
   district_id: string;
   full_name: string;
