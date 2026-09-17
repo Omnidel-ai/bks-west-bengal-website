@@ -35,3 +35,21 @@
 .admin-check{display:flex;gap:.6rem;align-items:center;min-height:var(--tap-min);margin-bottom:1rem}
 .admin-form-actions{display:flex;flex-wrap:wrap;gap:.65rem}
 
+/* Presence Gallery — derived from published member photos */
+.presence-gallery-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem}
+@media (min-width:720px){.presence-gallery-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.25rem}}
+.presence-gallery-card{display:flex;flex-direction:column;gap:.65rem;width:100%;padding:0;border:0;background:transparent;text-align:left;cursor:pointer;color:inherit;font:inherit;min-height:var(--tap-min)}
+.presence-gallery-frame{display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--r-md);background:var(--surface-sunk);box-shadow:var(--shadow-sm);border:1px solid var(--rule)}
+.presence-gallery-img{width:100%;height:100%;object-fit:cover;display:block}
+.presence-gallery-meta{display:flex;flex-direction:column;gap:.15rem;padding:0 .15rem}
+.presence-gallery-name{font-family:var(--font-display);color:var(--field-green);font-size:1.05rem;line-height:1.25}
+.presence-gallery-district{color:var(--ink-mute);font-size:.9rem}
+.presence-gallery-lightbox{position:fixed;inset:0;z-index:80;background:#201a10cc;display:flex;align-items:center;justify-content:center;padding:1rem}
+.presence-gallery-lightbox-panel{position:relative;width:min(920px,100%);max-height:min(92vh,960px);overflow:auto;background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow-lift);padding:1rem 1rem 1.25rem}
+.presence-gallery-lightbox-close{position:absolute;top:.4rem;right:.55rem;width:44px;height:44px;border:0;border-radius:var(--r-pill);background:var(--surface-sunk);color:var(--ink);font-size:1.6rem;line-height:1;cursor:pointer}
+.presence-gallery-lightbox-media{aspect-ratio:1/1;max-height:min(70vh,640px);margin:1.5rem auto .75rem;overflow:hidden;border-radius:var(--r-md);background:var(--surface-sunk)}
+.presence-gallery-lightbox-img{width:100%;height:100%;object-fit:contain;display:block}
+.presence-gallery-lightbox-copy{text-align:center}
+.presence-gallery-lightbox-copy h2{margin:0 0 .25rem;font-family:var(--font-display);color:var(--field-green)}
+.presence-gallery-lightbox-copy p{margin:0 0 1rem;color:var(--ink-mute)}
+
